@@ -166,11 +166,38 @@ footer {
 </div>
 
 <footer>
-© 2026 MOIZ GAMES
+© 2026 MOIZ GAMES<div class="card">
+  <h2>🏆 Leaderboard</h2>
+
+  <table id="leaderboardTable" style="width:100%; text-align:center;">
+    <tr>
+      <th>Player</th>
+      <th>Score</th>
+    </tr>
+  </table>
+</div>
 </footer>
 
 <!-- Firebase (FIXED POSITION) -->
-<script type="module">
+<script type="module">const db = getFirestore(app);
+
+async function loadLeaderboard() {
+  const snapshot = await getDocs(collection(db, "leaderboard"));
+
+  const table = document.getElementById("leaderboardTable");
+
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+
+    const row = table.insertRow();
+    row.innerHTML = `
+      <td>${data.name}</td>
+      <td>${data.score}</td>
+    `;
+  });
+}
+
+loadLeaderboard();
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
 

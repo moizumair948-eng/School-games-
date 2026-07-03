@@ -181,10 +181,10 @@ from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const db = getFirestore(app);
 
-async function loadLeaderboard() {
-  const snapshot = await getDocs(collection(db, "leaderboard"));
-
+window.addEventListener("load", async () => {
   const table = document.getElementById("leaderboardTable");
+
+  const snapshot = await getDocs(collection(db, "leaderboard"));
 
   snapshot.forEach((doc) => {
     const data = doc.data();
@@ -195,7 +195,7 @@ async function loadLeaderboard() {
       <td>${data.score}</td>
     `;
   });
-}
+});
 
 loadLeaderboard();
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";

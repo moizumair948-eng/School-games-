@@ -10,7 +10,7 @@
 
 <style>
 
-/* 🌌 MOVING GALAXY BACKGROUND */
+/* 🌌 GALAXY BACKGROUND */
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
@@ -19,21 +19,21 @@ body {
 
     background: linear-gradient(-45deg, #0b001a, #1a0033, #000010, #12002b);
     background-size: 400% 400%;
-    animation: galaxyMove 15s ease infinite;
+    animation: bgMove 15s ease infinite;
 }
 
-@keyframes galaxyMove {
+@keyframes bgMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* ⭐ STAR LAYER */
+/* ⭐ STARS */
 #stars {
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: -3;
+    z-index: -5;
 }
 
 .star {
@@ -58,7 +58,7 @@ body {
     background: linear-gradient(to right, white, transparent);
     transform: rotate(35deg);
     animation: shoot 7s linear infinite;
-    z-index: -2;
+    z-index: -4;
 }
 
 @keyframes shoot {
@@ -66,18 +66,16 @@ body {
     100% { transform: translate(1400px,700px) rotate(35deg); }
 }
 
-/* 🪐 FLOATING PLANETS */
+/* 🪐 PLANETS */
 .planet {
     position: fixed;
     border-radius: 50%;
-    z-index: -4;
-    opacity: 0.7;
-    animation: float 8s ease-in-out infinite;
+    z-index: -6;
 }
 
 .planet.one {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     top: 80px;
     left: 40px;
     background: radial-gradient(circle, #ff7bff, #4b0082);
@@ -86,27 +84,53 @@ body {
 .planet.two {
     width: 120px;
     height: 120px;
-    bottom: 100px;
+    bottom: 80px;
     right: 60px;
     background: radial-gradient(circle, #7bffea, #003b4b);
-    animation-duration: 10s;
 }
 
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(20px); }
-    100% { transform: translateY(0px); }
+/* 🪐 SATURN */
+.saturn {
+    position: fixed;
+    width: 120px;
+    height: 120px;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffd6a5, #ff9f1c, #7a3e00);
+    box-shadow: 0 0 40px rgba(255, 160, 60, 0.6);
+    animation: saturnFloat 6s ease-in-out infinite;
+    z-index: -3;
+}
+
+@keyframes saturnFloat {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    50% { transform: translate(-50%, -60%) rotate(180deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.saturn::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(25deg);
+    border-radius: 50%;
+    border: 4px solid rgba(255, 220, 150, 0.6);
 }
 
 /* HEADER */
 header {
     text-align: center;
-    padding: 30px;
+    padding: 25px;
 }
 
 header h1 {
-    font-size: 45px;
-    text-shadow: 0 0 25px #8a2be2;
+    font-size: 42px;
+    text-shadow: 0 0 20px #8a2be2;
 }
 
 header p {
@@ -121,13 +145,14 @@ input {
     padding: 12px;
     border-radius: 20px;
     border: none;
-    margin: 10px auto;
     display: block;
+    margin: 10px auto;
     outline: none;
 }
 
 /* BUTTONS */
 button {
+    margin-top: 10px;
     padding: 10px 15px;
     border: none;
     border-radius: 10px;
@@ -140,7 +165,7 @@ button:hover {
     background: #c000ff;
 }
 
-/* GAME GRID */
+/* GAMES */
 .games {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -154,12 +179,6 @@ button:hover {
     border-radius: 15px;
     padding: 15px;
     text-align: center;
-    transition: 0.3s;
-}
-
-.game:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px #b400ff;
 }
 
 </style>
@@ -167,54 +186,61 @@ button:hover {
 
 <body>
 
-<!-- STARS -->
+<!-- BACKGROUND -->
 <div id="stars"></div>
-
-<!-- SHOOTING STAR -->
 <div class="shooting"></div>
-
-<!-- PLANETS -->
 <div class="planet one"></div>
 <div class="planet two"></div>
+
+<!-- SATURN -->
+<div class="saturn"></div>
 
 <header>
 <h1>🌌 OLIVE CLASS GAMING HUB</h1>
 <p>created by moiz</p>
 </header>
 
-<!-- MUSIC (OPTIONAL BUTTON) -->
-<button onclick="playMusic()">🎵 Chill Music</button>
+<!-- 🎵 MUSIC -->
+<button id="musicBtn">🎵 Play Galaxy Music</button>
 
-<audio id="music">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+<audio id="music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3" type="audio/mpeg">
 </audio>
 
+<!-- SEARCH -->
 <input type="text" id="search" placeholder="🔍 Search games...">
 
+<!-- GAMES -->
 <div class="games">
 
 <div class="game"><h3>Roblox</h3><button onclick="window.open('https://www.roblox.com/')">Play</button></div>
-<div class="game"><h3>Coolmath</h3><button onclick="window.open('https://www.coolmathgames.com/')">Play</button></div>
+<div class="game"><h3>Coolmath Games</h3><button onclick="window.open('https://www.coolmathgames.com/')">Play</button></div>
 <div class="game"><h3>Krunker</h3><button onclick="window.open('https://krunker.io/')">Play</button></div>
-<div class="game"><h3>Venge</h3><button onclick="window.open('https://venge.io/')">Play</button></div>
+<div class="game"><h3>Venge.io</h3><button onclick="window.open('https://venge.io/')">Play</button></div>
 <div class="game"><h3>Shell Shockers</h3><button onclick="window.open('https://shellshock.io/')">Play</button></div>
+
+<div class="game"><h3>Ev.io</h3><button onclick="window.open('https://ev.io/')">Play</button></div>
+<div class="game"><h3>Dino Game</h3><button onclick="window.open('https://chromedino.com/')">Play</button></div>
+<div class="game"><h3>Snake</h3><button onclick="window.open('https://playsnake.org/')">Play</button></div>
+<div class="game"><h3>Tic Tac Toe</h3><button onclick="window.open('https://playtictactoe.org/')">Play</button></div>
+
+<div class="game"><h3>Memory Game</h3><button onclick="alert('Coming soon')">Play</button></div>
+<div class="game"><h3>Block Puzzle</h3><button onclick="alert('Coming soon')">Play</button></div>
+<div class="game"><h3>Space Shooter</h3><button onclick="alert('Coming soon')">Play</button></div>
+<div class="game"><h3>Brick Breaker</h3><button onclick="alert('Coming soon')">Play</button></div>
+<div class="game"><h3>Clicker Game</h3><button onclick="alert('Coming soon')">Play</button></div>
+
+<div class="game"><h3>Basketball</h3><button onclick="alert('Coming soon')">Play</button></div>
+<div class="game"><h3>Racing Game</h3><button onclick="alert('Coming soon')">Play</button></div>
+<div class="game"><h3>Platformer</h3><button onclick="alert('Coming soon')">Play</button></div>
+<div class="game"><h3>Puzzle Game</h3><button onclick="alert('Coming soon')">Play</button></div>
+<div class="game"><h3>Extra Game</h3><button onclick="alert('Coming soon')">Play</button></div>
 
 </div>
 
 <script>
 
-// SEARCH
-const search = document.getElementById("search");
-const games = document.querySelectorAll(".game");
-
-search.addEventListener("input", () => {
-    const value = search.value.toLowerCase();
-    games.forEach(g => {
-        g.style.display = g.innerText.toLowerCase().includes(value) ? "block" : "none";
-    });
-});
-
-// STARS GENERATION
+// ⭐ STARS
 const stars = document.getElementById("stars");
 
 for (let i = 0; i < 100; i++) {
@@ -226,12 +252,32 @@ for (let i = 0; i < 100; i++) {
     stars.appendChild(star);
 }
 
-// MUSIC
-function playMusic() {
-    document.getElementById("music").play();
-}
+// 🔍 SEARCH
+const search = document.getElementById("search");
+const games = document.querySelectorAll(".game");
+
+search.addEventListener("input", () => {
+    const value = search.value.toLowerCase();
+    games.forEach(game => {
+        game.style.display = game.innerText.toLowerCase().includes(value) ? "" : "none";
+    });
+});
+
+// 🎵 MUSIC TOGGLE
+const music = document.getElementById("music");
+const btn = document.getElementById("musicBtn");
+
+btn.addEventListener("click", () => {
+    if (music.paused) {
+        music.play();
+        btn.innerText = "⏸ Pause Galaxy Music";
+    } else {
+        music.pause();
+        btn.innerText = "🎵 Play Galaxy Music";
+    }
+});
 
 </script>
 
 </body>
-</html>
+    </html>

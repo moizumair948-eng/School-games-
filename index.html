@@ -177,7 +177,19 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-getAnalytics(app);
+getAnalytics(app);import { getFirestore, collection, addDoc, getDocs } 
+from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const db = getFirestore(app);async function testAddPlayer() {
+  await addDoc(collection(db, "leaderboard"), {
+    name: "Moiz",
+    score: Math.floor(Math.random() * 1000)
+  });
+
+  console.log("Player added!");
+}
+
+testAddPlayer();
 </script>
 
 </body>

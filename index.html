@@ -1,548 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🌌 MOIZ GAMES - Galaxy Edition</title>
+<title>🌌 Olive Class Gaming Hub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Orbitron',sans-serif;
+/* 🌌 MOVING GALAXY BACKGROUND */
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    overflow-x: hidden;
+
+    background: linear-gradient(-45deg, #0b001a, #1a0033, #000010, #12002b);
+    background-size: 400% 400%;
+    animation: galaxyMove 15s ease infinite;
 }
 
-body{
-
-background:
-radial-gradient(circle at top,#26104d,#090014,#000);
-
-overflow-x:hidden;
-color:white;
-
+@keyframes galaxyMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-/* Animated Stars */
-
-#stars{
-position:fixed;
-width:100%;
-height:100%;
-left:0;
-top:0;
-overflow:hidden;
-z-index:-5;
+/* ⭐ STAR LAYER */
+#stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
 }
 
-.star{
-
-position:absolute;
-background:white;
-border-radius:50%;
-animation:twinkle linear infinite;
-
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
 }
 
-@keyframes twinkle{
-
-0%{
-opacity:.2;
-transform:scale(.5);
+@keyframes twinkle {
+    0%,100% { opacity: 0.2; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.4); }
 }
 
-50%{
-opacity:1;
-transform:scale(1.3);
+/* 🌠 SHOOTING STAR */
+.shooting {
+    position: fixed;
+    width: 180px;
+    height: 2px;
+    background: linear-gradient(to right, white, transparent);
+    transform: rotate(35deg);
+    animation: shoot 7s linear infinite;
+    z-index: -2;
 }
 
-100%{
-opacity:.2;
-transform:scale(.5);
+@keyframes shoot {
+    0% { transform: translate(-300px,-200px) rotate(35deg); }
+    100% { transform: translate(1400px,700px) rotate(35deg); }
 }
 
+/* 🪐 FLOATING PLANETS */
+.planet {
+    position: fixed;
+    border-radius: 50%;
+    z-index: -4;
+    opacity: 0.7;
+    animation: float 8s ease-in-out infinite;
 }
 
-/* Shooting Star */
-
-.shooting{
-
-position:absolute;
-
-width:220px;
-height:2px;
-
-background:linear-gradient(to right,white,transparent);
-
-animation:shoot 7s linear infinite;
-
-opacity:.8;
-
+.planet.one {
+    width: 80px;
+    height: 80px;
+    top: 80px;
+    left: 40px;
+    background: radial-gradient(circle, #ff7bff, #4b0082);
 }
 
-@keyframes shoot{
-
-0%{
-
-transform:
-translate(-300px,-200px)
-rotate(35deg);
-
+.planet.two {
+    width: 120px;
+    height: 120px;
+    bottom: 100px;
+    right: 60px;
+    background: radial-gradient(circle, #7bffea, #003b4b);
+    animation-duration: 10s;
 }
 
-100%{
-
-transform:
-translate(1800px,900px)
-rotate(35deg);
-
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(20px); }
+    100% { transform: translateY(0px); }
 }
 
+/* HEADER */
+header {
+    text-align: center;
+    padding: 30px;
 }
 
-/* Floating Planet */
-
-.planet{
-
-position:fixed;
-
-right:40px;
-top:80px;
-
-width:120px;
-height:120px;
-
-border-radius:50%;
-
-background:
-radial-gradient(circle at 30% 30%,
-#ff9df8,
-#8d3bff,
-#2b005e);
-
-box-shadow:
-0 0 60px #8a2be2;
-
-animation:
-floatPlanet 6s ease-in-out infinite;
-
-z-index:-2;
-
+header h1 {
+    font-size: 45px;
+    text-shadow: 0 0 25px #8a2be2;
 }
 
-@keyframes floatPlanet{
-
-0%{transform:translateY(0px);}
-50%{transform:translateY(20px);}
-100%{transform:translateY(0px);}
-
+header p {
+    font-size: 14px;
+    opacity: 0.7;
 }
 
-/* Header */
-
-header{
-
-text-align:center;
-
-padding:40px;
-
+/* SEARCH */
+input {
+    width: 80%;
+    max-width: 500px;
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    margin: 10px auto;
+    display: block;
+    outline: none;
 }
 
-header h1{
-
-font-size:60px;
-
-color:#d88cff;
-
-text-shadow:
-
-0 0 20px #c700ff,
-0 0 50px #8a2be2;
-
+/* BUTTONS */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background: #8a2be2;
+    color: white;
+    cursor: pointer;
 }
 
-header p{
-
-margin-top:10px;
-
-color:#d8c8ff;
-
+button:hover {
+    background: #c000ff;
 }
 
-/* Search */
-
-.searchBox{
-
-display:flex;
-
-justify-content:center;
-
-margin:25px;
-
+/* GAME GRID */
+.games {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
 }
 
-.searchBox input{
-
-width:80%;
-max-width:600px;
-
-padding:15px;
-
-border:none;
-
-outline:none;
-
-border-radius:30px;
-
-font-size:18px;
-
-background:#170027;
-
-color:white;
-
-box-shadow:
-0 0 20px #8a2be2;
-
+.game {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #8a2be2;
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
 }
 
-/* Top Controls */
-
-.controls{
-
-display:flex;
-
-justify-content:center;
-
-gap:15px;
-
-flex-wrap:wrap;
-
-margin-bottom:30px;
-
-}
-
-.controls button,
-.controls select{
-
-padding:12px 20px;
-
-border:none;
-
-border-radius:25px;
-
-background:#8a2be2;
-
-color:white;
-
-cursor:pointer;
-
-transition:.3s;
-
-box-shadow:
-0 0 15px #8a2be2;
-
-}
-
-.controls button:hover,
-.controls select:hover{
-
-transform:scale(1.08);
-
-box-shadow:
-0 0 35px #d100ff;
-
-}
-
-/* Games Grid */
-
-.games{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(220px,1fr));
-
-gap:20px;
-
-padding:30px;
-
-}
-
-.game{
-
-background:rgba(255,255,255,.05);
-
-border:1px solid #8a2be2;
-
-border-radius:20px;
-
-padding:20px;
-
-text-align:center;
-
-transition:.35s;
-
-backdrop-filter:blur(8px);
-
-}
-
-.game:hover{
-
-transform:
-translateY(-8px)
-scale(1.03);
-
-box-shadow:
-0 0 30px #b400ff;
-
-}
-
-.game h2{
-
-margin-bottom:12px;
-
-}
-
-.playBtn{
-
-margin-top:15px;
-
-padding:12px 20px;
-
-background:#8a2be2;
-
-border:none;
-
-border-radius:30px;
-
-color:white;
-
-font-size:16px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-.playBtn:hover{
-
-background:#c000ff;
-
-box-shadow:
-0 0 25px #d000ff;
-
-}
-
-footer{
-
-padding:40px;
-
-text-align:center;
-
-color:#999;
-
-}
-
-/* Mobile */
-
-@media(max-width:700px){
-
-header h1{
-
-font-size:38px;
-
-}
-
+.game:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #b400ff;
 }
 
 </style>
-
 </head>
 
 <body>
 
-    <h1>🕹️ My Gaming Site</h1>
-
-    <!-- MUSIC BUTTON HERE -->
-    <button onclick="document.getElementById('bgmusic').play()">
-        ▶ Play Music
-    </button>
-
-    <audio id="bgmusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
-    </audio>
-
-    <div class="games">
-        <!-- your games here -->
-    </div>
-
-</body>
-
+<!-- STARS -->
 <div id="stars"></div>
 
+<!-- SHOOTING STAR -->
 <div class="shooting"></div>
 
-<div class="planet"></div>
+<!-- PLANETS -->
+<div class="planet one"></div>
+<div class="planet two"></div>
 
 <header>
-
-<h1>🌌 MOIZ GAMES</h1>
-
-<p>The Ultimate Galaxy Arcade</p>
-
+<h1>🌌 OLIVE CLASS GAMING HUB</h1>
+<p>created by moiz</p>
 </header>
 
-<div class="searchBox">
+<!-- MUSIC (OPTIONAL BUTTON) -->
+<button onclick="playMusic()">🎵 Chill Music</button>
 
-<input
-type="text"
-id="search"
-placeholder="🔍 Search Games...">
+<audio id="music">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<input type="text" id="search" placeholder="🔍 Search games...">
+
+<div class="games">
+
+<div class="game"><h3>Roblox</h3><button onclick="window.open('https://www.roblox.com/')">Play</button></div>
+<div class="game"><h3>Coolmath</h3><button onclick="window.open('https://www.coolmathgames.com/')">Play</button></div>
+<div class="game"><h3>Krunker</h3><button onclick="window.open('https://krunker.io/')">Play</button></div>
+<div class="game"><h3>Venge</h3><button onclick="window.open('https://venge.io/')">Play</button></div>
+<div class="game"><h3>Shell Shockers</h3><button onclick="window.open('https://shellshock.io/')">Play</button></div>
 
 </div>
 
+<script>
 
-</select>
-
-<button id="favButton">
-⭐ Favourites
-</button>
-
-</div><
-      
-
-<div class="games"><div class="game">
-  <h2>Roblox</h2>
-  <button class="playBtn" onclick="window.open('https://www.roblox.com/')">Play</button>
-</div>
-
-<div class="game">
-  <h2>Coolmath Games</h2>
-  <button class="playBtn" onclick="window.open('https://www.coolmathgames.com/')">Play</button>
-</div>
-
-<div class="game">
-  <h2>Krunker</h2>
-  <button class="playBtn" onclick="window.open('https://krunker.io/')">Play</button>
-</div>
-
-<div class="game">
-  <h2>Venge.io</h2>
-  <button class="playBtn" onclick="window.open('https://venge.io/')">Play</button>
-</div>
-
-<div class="game">
-  <h2>Shell Shockers</h2>
-  <button class="playBtn" onclick="window.open('https://shellshock.io/')">Play</button>
-</div>
-
-<div class="game">
-  <h2>Ev.io</h2>
-  <button class="playBtn" onclick="window.open('https://ev.io/')">Play</button>
-</div>
-
-<div class="game">
-  <h2>Fortnite</h2>
-  <button class="playBtn" onclick="window.open('https://www.fortnite.com/')">Play</button>
-</div>
-
-<div class="game">
-  <h2>Arsenal</h2>
-  <button class="playBtn" onclick="window.open('https://www.roblox.com/games/286090429/Arsenal')">Play</button>
-</div>
-
-<div class="game">
-  <h2>Dino Game</h2>
-  <button class="playBtn" onclick="window.open('https://chromedino.com/')">Play</button>
-</div>
-
-<div class="game">
-  <h2>Snake</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Tic Tac Toe</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Memory Match</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Block Puzzle</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Space Shooter</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Brick Breaker</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Clicker Game</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Basketball</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Racing Game</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Platformer</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Puzzle Game</h2>
-  <button class="playBtn">Play</button>
-</div>
-
-<div class="game">
-  <h2>Neon Ball</h2>
-  <button 
-
-
-
- 
-
-
-/* =========================
-   SEARCH FUNCTION
-========================= */
-
+// SEARCH
 const search = document.getElementById("search");
 const games = document.querySelectorAll(".game");
 
 search.addEventListener("input", () => {
-  let value = search.value.toLowerCase();
-
-  games.forEach(game => {
-    let name = game.innerText.toLowerCase();
-    game.style.display = name.includes(value) ? "block" : "none";
-  });
+    const value = search.value.toLowerCase();
+    games.forEach(g => {
+        g.style.display = g.innerText.toLowerCase().includes(value) ? "block" : "none";
+    });
 });
 
+// STARS GENERATION
+const stars = document.getElementById("stars");
 
-</style>
-<audio124140125253346>    
-  </script>
+for (let i = 0; i < 100; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+    stars.appendChild(star);
+}
+
+// MUSIC
+function playMusic() {
+    document.getElementById("music").play();
+}
+
+</script>
+
+</body>
+</html>

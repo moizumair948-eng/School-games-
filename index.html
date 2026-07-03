@@ -208,85 +208,20 @@ color:#aaa;
 © 2026 MOIZ GAMES | Built by Moiz 🎮
 </footer>
 
-</body>
-                </html><!-- Leaderboards -->
-<div class="card">
-<h2>🏆 Leaderboards</h2>
+  </body><<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
 
-<table style="width:100%;border-collapse:collapse;text-align:center;">
-<tr style="background:#00bfff;">
-<th>Rank</th>
-<th>Player</th>
-<th>Points</th>
-</tr>
-
-<tr>
-<td>🥇 1</td>
-<td>Waiting...</td>
-<td>0</td>
-</tr>
-
-<tr>
-<td>🥈 2</td>
-<td>Waiting...</td>
-<td>0</td>
-</tr>
-
-<tr>
-<td>🥉 3</td>
-<td>Waiting...</td>
-<td>0</td>
-</tr>
-
-<tr>
-<td>4</td>
-<td>Waiting...</td>
-<td>0</td>
-</tr>
-
-<tr>
-<td>5</td>
-<td>Waiting...</td>
-<td>0</td>
-</tr>
-</table>
-</div>
-
-<!-- Achievements -->
-<div class="card">
-<h2>🏅 Achievements</h2>
-
-<div class="games">
-
-<div class="game">
-<h3>🎮 First Visit</h3>
-<p>Visited MOIZ GAMES for the first time.</p>
-</div>
-
-<div class="game">
-<h3>🔥 Gamer</h3>
-<p>Played 10 games.</p>
-</div>
-
-<div class="game">
-<h3>🏆 Champion</h3>
-<p>Reach Rank #1.</p>
-</div>
-
-<div class="game">
-<h3>⭐ Legend</h3>
-<p>Earn 1,000 points.</p>
-</div>
-
-</div>
-</div>
-<script>
 const firebaseConfig = {
-  apiKey: "PASTE_HERE",
-  authDomain: "PASTE_HERE",
-  projectId: "PASTE_HERE",
-  storageBucket: "PASTE_HERE",
-  messagingSenderId: "PASTE_HERE",
-  appId: "PASTE_HERE"
+  apiKey: "AIzaSyCuJtd2ZwHLXkMVGH7X2KEQJnNBmKfvHYI",
+  authDomain: "moiz-games.firebaseapp.com",
+  projectId: "moiz-games",
+  storageBucket: "moiz-games.firebasestorage.app",
+  messagingSenderId: "212825810582",
+  appId: "1:212825810582:web:4aa096d66ba4697cb344b7",
+  measurementId: "G-XXBVVJLF7F"
 };
-</script>
+
+const app = initializeApp(firebaseConfig);
+getAnalytics(app);
+  </script>

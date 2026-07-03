@@ -409,6 +409,191 @@ placeholder="🔍 Search Games...">
 ⭐ Favourites
 </button>
 
+</div><
+<audio id="player" loop></audio>        
+
+<div class="games"><div class="game">
+  <h2>Roblox</h2>
+  <button class="playBtn" onclick="window.open('https://www.roblox.com/')">Play</button>
 </div>
 
-<div class="games">
+<div class="game">
+  <h2>Coolmath Games</h2>
+  <button class="playBtn" onclick="window.open('https://www.coolmathgames.com/')">Play</button>
+</div>
+
+<div class="game">
+  <h2>Krunker</h2>
+  <button class="playBtn" onclick="window.open('https://krunker.io/')">Play</button>
+</div>
+
+<div class="game">
+  <h2>Venge.io</h2>
+  <button class="playBtn" onclick="window.open('https://venge.io/')">Play</button>
+</div>
+
+<div class="game">
+  <h2>Shell Shockers</h2>
+  <button class="playBtn" onclick="window.open('https://shellshock.io/')">Play</button>
+</div>
+
+<div class="game">
+  <h2>Ev.io</h2>
+  <button class="playBtn" onclick="window.open('https://ev.io/')">Play</button>
+</div>
+
+<div class="game">
+  <h2>Fortnite</h2>
+  <button class="playBtn" onclick="window.open('https://www.fortnite.com/')">Play</button>
+</div>
+
+<div class="game">
+  <h2>Arsenal</h2>
+  <button class="playBtn" onclick="window.open('https://www.roblox.com/games/286090429/Arsenal')">Play</button>
+</div>
+
+<div class="game">
+  <h2>Dino Game</h2>
+  <button class="playBtn" onclick="window.open('https://chromedino.com/')">Play</button>
+</div>
+
+<div class="game">
+  <h2>Snake</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Tic Tac Toe</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Memory Match</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Block Puzzle</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Space Shooter</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Brick Breaker</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Clicker Game</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Basketball</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Racing Game</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Platformer</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Puzzle Game</h2>
+  <button class="playBtn">Play</button>
+</div>
+
+<div class="game">
+  <h2>Neon Ball</h2>
+  <button 
+  class="playBtn">Play</button>
+  </div>
+  </body>
+</html><script>
+/* =========================
+   MUSIC SYSTEM
+========================= */
+
+const songs = {
+  "Yara Yara Phonk": "music/yara.mp3",
+  "Tiki Tiki Phonk": "music/tiki.mp3",
+  "Gaming Theme": "music/gaming.mp3"
+};
+
+const player = document.getElementById("player");
+const musicBtn = document.getElementById("musicButton");
+const playlist = document.getElementById("playlist");
+
+let playing = false;
+
+musicBtn.addEventListener("click", () => {
+  if (!player.src) {
+    player.src = songs[playlist.value];
+  }
+
+  if (playing) {
+    player.pause();
+    musicBtn.innerText = "🎵 Music OFF";
+  } else {
+    player.play();
+    musicBtn.innerText = "🎵 Music ON";
+  }
+
+  playing = !playing;
+});
+
+playlist.addEventListener("change", () => {
+  player.src = songs[playlist.value];
+  player.play();
+  musicBtn.innerText = "🎵 Music ON";
+  playing = true;
+});
+
+
+/* =========================
+   SEARCH FUNCTION
+========================= */
+
+const search = document.getElementById("search");
+const games = document.querySelectorAll(".game");
+
+search.addEventListener("input", () => {
+  let value = search.value.toLowerCase();
+
+  games.forEach(game => {
+    let name = game.innerText.toLowerCase();
+    game.style.display = name.includes(value) ? "block" : "none";
+  });
+});
+
+
+/* =========================
+   FAVOURITES SYSTEM
+========================= */
+
+let favs = JSON.parse(localStorage.getItem("favs") || "[]");
+
+const favBtn = document.getElementById("favButton");
+
+favBtn.addEventListener("click", () => {
+  alert("⭐ Favourites system is ready (upgrade coming next part)");
+});
+
+
+/* =========================
+   AUTO LOAD FIRST SONG
+========================= */
+
+window.addEventListener("load", () => {
+  player.src = songs["Yara Yara Phonk"];
+});
+  </script>

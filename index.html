@@ -407,18 +407,6 @@ placeholder="🔍 Search Games...">
 
 </div>
 
-<div class="controls">
-
-<button id="musicButton">
-🎵 Music OFF
-</button>
-
-<select id="playlist">
-
-<option>Choose Music</option>
-<option>4 raws</option>
-<option>coming soon</option>
-<option>coming soon</option>
 
 </select>
 
@@ -427,7 +415,7 @@ placeholder="🔍 Search Games...">
 </button>
 
 </div><
-<audio id="player" loop></audio>        
+      
 
 <div class="games"><div class="game">
   <h2>Roblox</h2>
@@ -532,43 +520,10 @@ placeholder="🔍 Search Games...">
 <div class="game">
   <h2>Neon Ball</h2>
   <button 
-  class="playBtn">Play</button>
-  </div>
-  </body>
-</html><script>
- =========================
-   MUSIC SYSTEM
-============================
-};
 
-const player = document.getElementById("player");
-const musicBtn = document.getElementById("musicButton");
-const playlist = document.getElementById("playlist");
 
-let playing = false;
 
-musicBtn.addEventListener("click", () => {
-  if (!player.src) {
-    player.src = songs[playlist.value];
-  }
-
-  if (playing) {
-    player.pause();
-    musicBtn.innerText = "🎵 Music OFF";
-  } else {
-    player.play();
-    musicBtn.innerText = "🎵 Music ON";
-  }
-
-  playing = !playing;
-});
-
-playlist.addEventListener("change", () => {
-  player.src = songs[playlist.value];
-  player.play();
-  musicBtn.innerText = "🎵 Music ON";
-  playing = true;
-});
+ 
 
 
 /* =========================

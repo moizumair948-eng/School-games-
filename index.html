@@ -612,5 +612,51 @@ favBtn.addEventListener("click", () => {
 
 window.addEventListener("load", () => {
   player.src = songs["Yara Yara Phonk"];
-});
+});<div class="song-grid">
+  <!-- Row 1 -->
+  <div class="song-row">
+    <h3>Esdeekid - Song 1</h3>
+    <iframe width="560" height="315" src="https://youtube.com" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="song-row">
+    <h3>Esdeekid - Song 2</h3>
+    <iframe width="560" height="315" src="https://youtube.com" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <!-- Row 3 -->
+  <div class="song-row">
+    <h3>Esdeekid - Song 3</h3>
+    <iframe width="560" height="315" src="https://youtube.com" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <!-- Row 4 -->
+  <div class="song-row">
+    <h3>Esdeekid - Song 4</h3>
+    <iframe width="560" height="315" src="https://youtube.com" frameborder="0" allowfullscreen></iframe>
+  </div>
+</div>
+
+<style>
+  .song-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .song-row {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .song-row iframe {
+    max-width: 100%;
+    border-radius: 4px;
+  }
+</style>
+    
   </script>

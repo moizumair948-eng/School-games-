@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Olive Class Gaming Hub</title>
+
+<title>olive class gaming hub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
@@ -17,13 +18,11 @@ color:white;
 overflow:hidden;
 }
 
-/* 🌌 CANVAS */
 canvas{
 position:fixed;
 inset:0;
-z-index:-10;
-opacity:0;
-transition:1.5s;
+z-index:-1;
+opacity:1;
 }
 
 /* HEADER */
@@ -31,8 +30,19 @@ header{
 text-align:center;
 padding:20px;
 text-shadow:0 0 20px cyan;
-opacity:0;
-transition:1.5s;
+}
+
+header h1{
+margin:0;
+font-size:20px;
+text-transform:lowercase;
+}
+
+header p{
+margin:0;
+font-size:11px;
+opacity:0.7;
+text-transform:lowercase;
 }
 
 /* MENU */
@@ -40,166 +50,185 @@ transition:1.5s;
 display:flex;
 gap:20px;
 padding:30px;
-margin-left:90px;
+margin-left:40px;
 overflow-x:auto;
-opacity:0;
-transition:1.5s;
+}
+
+.track{
+display:flex;
+gap:20px;
+transition:0.5s;
 }
 
 .game{
-min-width:180px;
+min-width:170px;
 padding:15px;
 border-radius:12px;
 background:rgba(255,255,255,0.04);
 border:2px solid #00ffff;
 text-align:center;
-transition:0.2s;
+transition:0.25s;
+transform:scale(0.9);
+opacity:0.6;
 }
 
 .game.selected{
-transform:scale(1.4);
-box-shadow:0 0 70px cyan;
+transform:scale(1.15);
+opacity:1;
+box-shadow:0 0 30px cyan;
 border-color:#ff00ff;
 }
 
-button{
-margin-top:10px;
-padding:10px 14px;
-border-radius:10px;
+/* D-PAD */
+.dpad{
+position:fixed;
+bottom:140px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:25px;
+z-index:10;
+}
+
+.dpad button{
+width:75px;
+height:75px;
+font-size:26px;
+border-radius:16px;
 border:2px solid #00ffff;
 background:rgba(0,0,0,0.5);
 color:#00ffff;
 box-shadow:0 0 15px #00ffff;
 cursor:pointer;
-}
-
-/* CONTROLLER */
-.controller{
-position:fixed;
-left:10px;
-top:50%;
-transform:translateY(-50%);
 display:flex;
-flex-direction:column;
-gap:10px;
-z-index:10;
-opacity:0;
-transition:1.5s;
+align-items:center;
+justify-content:center;
+font-family:Arial;
+font-weight:700;
+transition:0.2s;
 }
 
-.controller button{
-width:70px;
-height:70px;
-font-size:24px;
-border-radius:14px;
+.dpad button:active{
+transform:scale(0.92);
 }
 
-.action button{
-width:140px;
-height:60px;
-border:2px solid #ff00ff;
-color:#ff00ff;
-box-shadow:0 0 25px #ff00ff;
-}
-
-/* MUSIC */
-#musicBtn{
+/* CONTROLS */
+#controls{
 position:fixed;
 bottom:20px;
 right:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+z-index:20;
+}
+
+#musicBtn{
 padding:12px;
 border:2px solid #ff00ff;
-background:black;
+background:rgba(0,0,0,0.6);
 color:#ff00ff;
-box-shadow:0 0 20px #ff00ff;
-opacity:0;
-transition:1.5s;
+box-shadow:0 0 15px #ff00ff;
+cursor:pointer;
+transition:0.2s;
 }
 
-/* VISUALIZER */
-#bars{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-height:120px;
-display:flex;
-align-items:flex-end;
-justify-content:center;
-gap:2px;
-opacity:0;
+#speed{
+width:140px;
+accent-color:#00ffff;
 }
 
-.bar{
-width:4px;
-height:10px;
-background:cyan;
-box-shadow:0 0 10px cyan;
+label{
+color:#00ffff;
+font-size:12px;
 }
 
-/* SHAKE */
-@keyframes shake{
-0%{transform:translate(0,0)}
-25%{transform:translate(2px,-2px)}
-50%{transform:translate(-2px,2px)}
-75%{transform:translate(2px,2px)}
-100%{transform:translate(0,0)}
+/* SECRET INPUT */
+#secretInput{
+width:140px;
+padding:6px;
+border:2px solid #00ffff;
+background:black;
+color:#00ffff;
+outline:none;
+border-radius:6px;
+font-family:Orbitron;
+font-size:11px;
+box-shadow:0 0 10px #00ffff;
 }
 
-.shake{animation:shake 0.15s infinite;}
+/* 🌟 NEON RESTORE (IMPORTANT FIX) */
+
+button{
+font-family:'Orbitron',sans-serif;
+transition:0.2s;
+}
+
+/* GAME BUTTONS */
+.game button{
+margin-top:10px;
+padding:10px 14px;
+border-radius:10px;
+border:2px solid #00ffff;
+background:rgba(0,0,0,0.6);
+color:#00ffff;
+box-shadow:0 0 12px #00ffff;
+cursor:pointer;
+}
+
+.game button:hover{
+box-shadow:0 0 25px #00ffff, 0 0 40px #00ffff;
+transform:scale(1.05);
+}
+
+/* MUSIC BUTTON HOVER */
+#musicBtn:hover{
+box-shadow:0 0 25px #ff00ff, 0 0 45px #ff00ff;
+transform:scale(1.05);
+}
+
+/* D-PAD HOVER */
+.dpad button:hover{
+box-shadow:0 0 25px #00ffff, 0 0 45px #00ffff;
+transform:scale(1.08);
+}
+
+/* SECRET INPUT FOCUS */
+#secretInput:focus{
+box-shadow:0 0 25px #00ffff, 0 0 40px #ff00ff;
+transform:scale(1.02);
+}
 
 </style>
 </head>
 
 <body>
 
-<canvas id="space"></canvas>
+<canvas id="bg"></canvas>
 
 <header>
-<h1>OLIVE CLASS GAMING HUB</h1>
-<p>NEON WARP SYSTEM</p>
+<h1>olive class gaming hub</h1>
+<p>created by moiz</p>
 </header>
 
-<div class="controller">
+<div class="menu">
+<div class="track" id="track"></div>
+</div>
+
+<div class="dpad">
 <button onclick="move(-1)">⬅</button>
 <button onclick="move(1)">➡</button>
-<div class="action">
-<button onclick="activateGame()">SELECT</button>
-</div>
 </div>
 
-<div class="menu">
+<div id="controls">
 
-<!-- 25 GAMES RESTORED -->
-<div class="game"><h3>Poki</h3><button onclick="go('https://poki.com')">Play</button></div>
-<div class="game"><h3>CrazyGames</h3><button onclick="go('https://crazygames.com')">Play</button></div>
-<div class="game"><h3>Y8</h3><button onclick="go('https://y8.com')">Play</button></div>
-<div class="game"><h3>Miniclip</h3><button onclick="go('https://miniclip.com')">Play</button></div>
-<div class="game"><h3>Armor Games</h3><button onclick="go('https://armorgames.com')">Play</button></div>
+<button id="musicBtn">🎵 music</button>
 
-<div class="game"><h3>Slither</h3><button onclick="go('https://slither.io')">Play</button></div>
-<div class="game"><h3>Agar</h3><button onclick="go('https://agar.io')">Play</button></div>
-<div class="game"><h3>2048</h3><button onclick="go('https://play2048.co')">Play</button></div>
-<div class="game"><h3>Tetris</h3><button onclick="go('https://tetris.com')">Play</button></div>
-<div class="game"><h3>Dino</h3><button onclick="go('https://chromedino.com')">Play</button></div>
+<label>star speed</label>
+<input id="speed" type="range" min="0.2" max="3" step="0.1" value="1">
 
-<div class="game"><h3>Shell Shockers</h3><button onclick="go('https://shellshock.io')">Play</button></div>
-<div class="game"><h3>Krunker</h3><button onclick="go('https://krunker.io')">Play</button></div>
-<div class="game"><h3>Venge</h3><button onclick="go('https://venge.io')">Play</button></div>
-<div class="game"><h3>1v1.lol</h3><button onclick="go('https://1v1.lol')">Play</button></div>
-<div class="game"><h3>Zombs Royale</h3><button onclick="go('https://zombsroyale.io')">Play</button></div>
-
-<div class="game"><h3>Paper.io</h3><button onclick="go('https://paper-io.com')">Play</button></div>
-<div class="game"><h3>Diep.io</h3><button onclick="go('https://diep.io')">Play</button></div>
-<div class="game"><h3>Bonk.io</h3><button onclick="go('https://bonk.io')">Play</button></div>
-<div class="game"><h3>Hole.io</h3><button onclick="go('https://hole-io.com')">Play</button></div>
-<div class="game"><h3>Run 3</h3><button onclick="go('https://run3.io')">Play</button></div>
-
-<div class="game"><h3>Roblox</h3><button onclick="go('https://roblox.com')">Play</button></div>
-<div class="game"><h3>Coolmath</h3><button onclick="go('https://coolmathgames.com')">Play</button></div>
-<div class="game"><h3>Crazy Cars</h3><button onclick="go('https://poki.com/en/g/madalin-stunt-cars-2')">Play</button></div>
-<div class="game"><h3>Stickman Hook</h3><button onclick="go('https://poki.com/en/g/stickman-hook')">Play</button></div>
-<div class="game"><h3>Fireboy & Watergirl</h3><button onclick="go('https://poki.com/en/g/fireboy-and-watergirl-forest-temple')">Play</button></div>
+<label>secret code</label>
+<input id="secretInput" type="text" placeholder="enter code...">
 
 </div>
 
@@ -207,101 +236,44 @@ box-shadow:0 0 10px cyan;
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<button id="musicBtn">🎵 Play Music</button>
-
-<div id="bars"></div>
-
 <script>
 
-/* 🌌 WARP BACKGROUND */
-const canvas=document.getElementById("space");
+const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
 
+function resize(){
 canvas.width=innerWidth;
 canvas.height=innerHeight;
+}
+window.addEventListener("resize",resize);
+resize();
 
-let particles=Array(900).fill().map(()=>({
-x:(Math.random()-0.5)*canvas.width,
-y:(Math.random()-0.5)*canvas.height,
-z:Math.random()*canvas.width,
-speed:2+Math.random()*4
+let speedControl=1;
+let musicBoost=0;
+let secretMode=false;
+
+document.getElementById("speed").addEventListener("input",(e)=>{
+speedControl=parseFloat(e.target.value);
+});
+
+let stars=Array(120).fill().map(()=>({
+x:Math.random()*innerWidth,
+y:Math.random()*innerHeight,
+r:Math.random()*1.6,
+s:0.4+Math.random()*1.0
 }));
 
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
+let t=0;
 
-let grad=ctx.createRadialGradient(
-canvas.width/2,
-canvas.height/2,
-100,
-canvas.width/2,
-canvas.height/2,
-canvas.width
-);
-
-grad.addColorStop(0,"rgba(0,255,255,0.18)");
-grad.addColorStop(0.4,"rgba(255,0,255,0.08)");
-grad.addColorStop(1,"black");
-
-ctx.fillStyle=grad;
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-for(let p of particles){
-
-p.z-=p.speed;
-if(p.z<=1){
-p.z=canvas.width;
-p.x=(Math.random()-0.5)*canvas.width;
-p.y=(Math.random()-0.5)*canvas.height;
-}
-
-let k=128/p.z;
-let sx=p.x*k+canvas.width/2;
-let sy=p.y*k+canvas.height/2;
-
-let size=(1-p.z/canvas.width)*3;
-
-ctx.beginPath();
-ctx.fillStyle=`rgba(0,255,255,${1-p.z/canvas.width})`;
-ctx.shadowBlur=20;
-ctx.shadowColor="#00ffff";
-ctx.arc(sx,sy,size,0,Math.PI*2);
-ctx.fill();
-}
-
-requestAnimationFrame(draw);
-}
-
-/* NAV */
-const games=document.querySelectorAll(".game");
-let index=0;
-
-function update(){
-games.forEach(g=>g.classList.remove("selected"));
-games[index].classList.add("selected");
-games[index].scrollIntoView({behavior:"smooth",inline:"center"});
-}
-
-function move(d){
-index=(index+d+games.length)%games.length;
-update();
-}
-
-function go(url){
-window.open(url,"_blank");
-}
-
-function activateGame(){
-games[index].querySelector("button").click();
-}
-
-/* 🎵 AUDIO SYNC */
 const music=document.getElementById("music");
 const musicBtn=document.getElementById("musicBtn");
+
+let musicOn=false;
 
 const audioCtx=new (window.AudioContext||window.webkitAudioContext)();
 const source=audioCtx.createMediaElementSource(music);
 const analyser=audioCtx.createAnalyser();
+
 analyser.fftSize=256;
 
 source.connect(analyser);
@@ -309,87 +281,157 @@ analyser.connect(audioCtx.destination);
 
 const data=new Uint8Array(analyser.frequencyBinCount);
 
-/* BARS */
-const bars=document.getElementById("bars");
-
-for(let i=0;i<60;i++){
-let b=document.createElement("div");
-b.className="bar";
-bars.appendChild(b);
-}
-
-const barEls=document.querySelectorAll(".bar");
-
-let lastBeat=0;
-
-function beat(){
-analyser.getByteFrequencyData(data);
-
-let sum=0;
-let bass=data[2]+data[3]+data[4];
-
-for(let i=0;i<data.length;i++)sum+=data[i];
-
-let avg=sum/data.length/255;
-let energy=bass/255;
-
-document.body.style.filter=`brightness(${1+avg*0.5}) saturate(${1+avg})`;
-
-games.forEach(g=>{
-g.style.transform=`scale(${1+avg*0.08})`;
-});
-
-if(energy>0.6 && Date.now()-lastBeat>200){
-document.body.classList.add("shake");
-setTimeout(()=>document.body.classList.remove("shake"),120);
-lastBeat=Date.now();
-}
-
-for(let i=0;i<barEls.length;i++){
-barEls[i].style.height=(data[i]/255*120)+"px";
-}
-
-requestAnimationFrame(beat);
-}
-
-/* START */
 musicBtn.onclick=async()=>{
 await audioCtx.resume();
 
-if(music.paused){
+if(!musicOn){
 music.play();
-beat();
-musicBtn.innerText="⏸ Pause Music";
-
-canvas.style.opacity="1";
-document.querySelector("header").style.opacity="1";
-document.querySelector(".menu").style.opacity="1";
-document.querySelector(".controller").style.opacity="1";
-document.getElementById("bars").style.opacity="1";
+musicOn=true;
+musicBtn.innerText="⏸ music";
 }else{
 music.pause();
-musicBtn.innerText="🎵 Play Music";
+musicOn=false;
+musicBtn.innerText="🎵 music";
 }
 };
 
-/* BOOT */
-let p=0;
-let boot=setInterval(()=>{
-p++;
-if(p>=100){
-clearInterval(boot);
+const secretInput=document.getElementById("secretInput");
+
+secretInput.addEventListener("keydown",(e)=>{
+if(e.key==="Enter"){
+let val=secretInput.value.toLowerCase().trim();
+
+if(val==="safwaan"){
+secretMode=true;
+secretInput.value="✔ activated";
+
+setTimeout(()=>{
+secretMode=false;
+secretInput.value="";
+},8000);
+}
+}
+});
+
+function draw(){
+t+=0.002;
+
+if(musicOn){
+analyser.getByteFrequencyData(data);
+
+let sum=0;
+for(let i=0;i<data.length;i++) sum+=data[i];
+
+musicBoost = (sum / data.length) / 70;
+}else{
+musicBoost=0;
+}
+
+let g=ctx.createRadialGradient(
+canvas.width/2,canvas.height/2,0,
+canvas.width/2,canvas.height/2,canvas.width
+);
+
+g.addColorStop(0, secretMode ? "rgba(120,0,255,0.4)" : "rgba(60,0,120,0.35)");
+g.addColorStop(0.3,"rgba(0,80,160,0.25)");
+g.addColorStop(0.6,"rgba(0,0,0,0.85)");
+g.addColorStop(1,"black");
+
+ctx.fillStyle=g;
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+for(let s of stars){
+
+let finalSpeed = speedControl + musicBoost;
+
+if(secretMode) finalSpeed *= 2;
+
+s.y += s.s * finalSpeed;
+s.x += Math.sin(t+s.y*0.01)*0.2;
+
+if(s.y>canvas.height)s.y=0;
+
+ctx.fillStyle=`rgba(0,255,255,${musicOn ? 0.7 : 0.5})`;
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
+}
+
+requestAnimationFrame(draw);
+}
+
 draw();
 
-canvas.style.opacity="1";
-document.querySelector("header").style.opacity="1";
-document.querySelector(".menu").style.opacity="1";
-document.querySelector(".controller").style.opacity="1";
-document.getElementById("musicBtn").style.opacity="1";
-document.getElementById("bars").style.opacity="1";
+/* GAME SYSTEM */
+const games=[
+"Poki","CrazyGames","Y8","Miniclip","Armor Games",
+"Slither","Agar","2048","Tetris","Dino",
+"Shell Shockers","Krunker","Venge","1v1.lol","Zombs",
+"Paper.io","Diep.io","Bonk.io","Hole.io","Run 3",
+"Roblox","Coolmath","Stickman Hook","Fireboy","More"
+];
+
+const links={
+"Poki":"https://poki.com",
+"CrazyGames":"https://crazygames.com",
+"Y8":"https://y8.com",
+"Miniclip":"https://miniclip.com",
+"Armor Games":"https://armorgames.com",
+"Slither":"https://slither.io",
+"Agar":"https://agar.io",
+"2048":"https://play2048.co",
+"Tetris":"https://tetris.com",
+"Dino":"https://chromedino.com",
+"Shell Shockers":"https://shellshock.io",
+"Krunker":"https://krunker.io",
+"Venge":"https://venge.io",
+"1v1.lol":"https://1v1.lol",
+"Zombs":"https://zombsroyale.io",
+"Paper.io":"https://paper-io.com",
+"Diep.io":"https://diep.io",
+"Bonk.io":"https://bonk.io",
+"Hole.io":"https://hole-io.com",
+"Run 3":"https://run3.io",
+"Roblox":"https://roblox.com",
+"Coolmath":"https://coolmathgames.com",
+"Stickman Hook":"https://poki.com/en/g/stickman-hook",
+"Fireboy":"https://poki.com/en/g/fireboy-and-watergirl-forest-temple",
+"More":"https://poki.com"
+};
+
+const track=document.getElementById("track");
+
+games.forEach(g=>{
+let div=document.createElement("div");
+div.className="game";
+div.innerHTML=`<h3>${g}</h3><button onclick="openGame('${g}')">play</button>`;
+track.appendChild(div);
+});
+
+const cards=document.querySelectorAll(".game");
+let index=0;
+
+function update(){
+cards.forEach((c,i)=>{
+c.classList.remove("selected");
+if(i===index)c.classList.add("selected");
+});
+
+track.style.transform=`translateX(${-index * 190}px)`;
 }
-},20);
+
+function move(dir){
+index=(index+dir+cards.length)%cards.length;
+update();
+}
+
+function openGame(name){
+window.open(links[name] || "https://poki.com","_blank");
+}
+
+update();
 
 </script>
 
 </body>
-                                 </html>
+  </html>

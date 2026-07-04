@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Olive Gaming Hub</title>
+<title>Olive Class Gaming Hub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
@@ -15,7 +15,7 @@ body {
     font-family: 'Orbitron', sans-serif;
     color: white;
     overflow-x: hidden;
-    background: #000;
+    background: radial-gradient(circle at top, #12002b, #000);
 }
 
 /* STARFIELD */
@@ -24,7 +24,6 @@ body {
     width: 100%;
     height: 100%;
     z-index: -10;
-    background: radial-gradient(circle at top, #12002b, #000);
 }
 
 .star {
@@ -41,21 +40,6 @@ body {
     50% { opacity: 1; }
 }
 
-/* HEADER */
-header {
-    text-align: center;
-    padding: 25px 10px;
-}
-
-header h1 {
-    font-size: 32px;
-    text-shadow: 0 0 20px #8a2be2;
-}
-
-header p {
-    opacity: 0.7;
-}
-
 /* SATURN */
 .saturn {
     position: fixed;
@@ -63,64 +47,47 @@ header p {
     right: -120px;
     width: 320px;
     height: 320px;
+    background: radial-gradient(circle, #ffb86b, #ff7b00, #4a1f00);
+    border-radius: 50%;
     animation: float 6s ease-in-out infinite;
 }
 
-.saturn::before {
-    content: "";
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    top: 70px;
-    left: 70px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #ffd9a0, #ff9a3c, #6b2d00);
-}
-
-.saturn::after {
-    content: "";
-    position: absolute;
-    width: 320px;
-    height: 120px;
-    top: 100px;
-    left: 0;
-    border-radius: 50%;
-    border: 4px solid rgba(255,220,160,0.6);
+@keyframes float {
+    50% { transform: translateY(20px); }
 }
 
 /* MENU */
 .menu {
     display: flex;
-    overflow-x: hidden;
     gap: 20px;
     padding: 30px;
     margin-left: 90px;
+    overflow: hidden;
 }
 
-/* 🎮 RGB ANIMATED GAMES */
+/* RGB CARDS */
 .game {
     min-width: 180px;
+    padding: 15px;
+    border-radius: 15px;
     background: rgba(255,255,255,0.05);
     border: 2px solid;
-    border-radius: 15px;
-    padding: 15px;
+    animation: rgb 6s linear infinite;
     text-align: center;
     transition: 0.3s;
-
-    animation: rgbBorder 6s linear infinite;
 }
 
-@keyframes rgbBorder {
-    0%   { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
-    25%  { border-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
-    50%  { border-color: #00ffff; box-shadow: 0 0 10px #00ffff; }
-    75%  { border-color: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
-    100% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
+@keyframes rgb {
+    0%   { border-color: red; box-shadow: 0 0 10px red; }
+    25%  { border-color: lime; box-shadow: 0 0 10px lime; }
+    50%  { border-color: cyan; box-shadow: 0 0 10px cyan; }
+    75%  { border-color: magenta; box-shadow: 0 0 10px magenta; }
+    100% { border-color: red; box-shadow: 0 0 10px red; }
 }
 
 .game.selected {
-    transform: scale(1.3);
-    box-shadow: 0 0 40px #ffffff;
+    transform: scale(1.25);
+    box-shadow: 0 0 35px white;
 }
 
 /* BUTTONS */
@@ -129,25 +96,12 @@ button {
     padding: 10px 14px;
     border: none;
     border-radius: 10px;
-    color: white;
     background: #00c3ff;
-    box-shadow: 0 0 10px #00c3ff, 0 0 25px #00c3ff;
-    cursor: pointer;
-}
-
-/* MUSIC */
-#musicBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 12px;
-    background: #8a2be2;
     color: white;
-    border: none;
-    border-radius: 10px;
+    box-shadow: 0 0 10px #00c3ff;
 }
 
-/* 🟢 ARROWS */
+/* ARROWS */
 .navBtn {
     position: fixed;
     left: 10px;
@@ -156,20 +110,28 @@ button {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    z-index: 999;
 }
 
 .navBtn button {
     width: 55px;
     height: 55px;
-    font-size: 22px;
-
-    background: #001a00;
+    background: black;
     border: 2px solid #00ff66;
     color: #00ff66;
+    font-size: 22px;
+    box-shadow: 0 0 10px #00ff66;
+}
 
-    box-shadow: 0 0 10px #00ff66, 0 0 25px #00ff66;
-    border-radius: 12px;
+/* MUSIC */
+#musicBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #8a2be2;
+    color: white;
 }
 
 </style>
@@ -180,49 +142,32 @@ button {
 <div id="stars"></div>
 <div class="saturn"></div>
 
-<header>
-<h1>OLIVE CLASS GAMING HUB</h1>
-<p>made by moiz</p>
-</header>
-
-<!-- ARROWS -->
 <div class="navBtn">
 <button onclick="moveLeft()">⬅</button>
 <button onclick="moveRight()">➡</button>
 </div>
 
-<!-- MENU -->
+<header>
+<h1>OLIVE CLASS GAMING HUB</h1>
+<p>made by moiz</p>
+</header>
+
 <div class="menu">
 
-<!-- 25 GAMES + HUBS -->
-<div class="game"><h3>Roblox</h3><button onclick="window.open('https://roblox.com','_blank')">Play</button></div>
-<div class="game"><h3>Minecraft</h3><button onclick="window.open('https://minecraft.net','_blank')">Play</button></div>
-<div class="game"><h3>Fortnite</h3><button onclick="window.open('https://fortnite.com','_blank')">Play</button></div>
-<div class="game"><h3>Valorant</h3><button onclick="window.open('https://playvalorant.com','_blank')">Play</button></div>
-<div class="game"><h3>CS2</h3><button onclick="window.open('https://counter-strike.net','_blank')">Play</button></div>
+<div class="game"><h3>Poki</h3><button onclick="window.open('https://poki.com','_blank')">Play</button></div>
+<div class="game"><h3>CrazyGames</h3><button onclick="window.open('https://crazygames.com','_blank')">Play</button></div>
+<div class="game"><h3>Y8</h3><button onclick="window.open('https://y8.com','_blank')">Play</button></div>
+<div class="game"><h3>Miniclip</h3><button onclick="window.open('https://miniclip.com','_blank')">Play</button></div>
 
-<div class="game"><h3>Rocket League</h3><button onclick="window.open('https://rocketleague.com','_blank')">Play</button></div>
-<div class="game"><h3>GTA V</h3><button onclick="window.open('https://rockstargames.com','_blank')">Play</button></div>
-<div class="game"><h3>COD</h3><button onclick="window.open('https://callofduty.com','_blank')">Play</button></div>
-<div class="game"><h3>FIFA</h3><button onclick="window.open('https://ea.com','_blank')">Play</button></div>
-<div class="game"><h3>Among Us</h3><button onclick="window.open('https://innersloth.com','_blank')">Play</button></div>
+<div class="game"><h3>Slither.io</h3><button onclick="window.open('https://slither.io','_blank')">Play</button></div>
+<div class="game"><h3>Agar.io</h3><button onclick="window.open('https://agar.io','_blank')">Play</button></div>
+<div class="game"><h3>2048</h3><button onclick="window.open('https://play2048.co','_blank')">Play</button></div>
+<div class="game"><h3>Tetris</h3><button onclick="window.open('https://tetris.com/play-tetris','_blank')">Play</button></div>
+<div class="game"><h3>Dino</h3><button onclick="window.open('https://chromedino.com','_blank')">Play</button></div>
 
-<div class="game"><h3>Fall Guys</h3><button onclick="window.open('https://fallguys.com','_blank')">Play</button></div>
-<div class="game"><h3>Subway Surfers</h3><button onclick="window.open('https://poki.com/en/g/subway-surfers','_blank')">Play</button></div>
-<div class="game"><h3>Temple Run</h3><button onclick="window.open('https://poki.com/en/g/temple-run-2','_blank')">Play</button></div>
-<div class="game"><h3>Geometry Dash</h3><button onclick="window.open('https://geometrydash.io','_blank')">Play</button></div>
-<div class="game"><h3>Clash Royale</h3><button onclick="window.open('https://supercell.com/en/games/clashroyale','_blank')">Play</button></div>
-
-<div class="game"><h3>Brawl Stars</h3><button onclick="window.open('https://supercell.com/en/games/brawlstars','_blank')">Play</button></div>
-<div class="game"><h3>Stumble Guys</h3><button onclick="window.open('https://stumbleguys.com','_blank')">Play</button></div>
 <div class="game"><h3>Shell Shockers</h3><button onclick="window.open('https://shellshock.io','_blank')">Play</button></div>
 <div class="game"><h3>Krunker</h3><button onclick="window.open('https://krunker.io','_blank')">Play</button></div>
-<div class="game"><h3>Venge.io</h3><button onclick="window.open('https://venge.io','_blank')">Play</button></div>
-
-<div class="game"><h3>Poki Hub</h3><button onclick="window.open('https://poki.com','_blank')">500+ Games</button></div>
-<div class="game"><h3>CrazyGames</h3><button onclick="window.open('https://crazygames.com','_blank')">500+ Games</button></div>
-<div class="game"><h3>Coolmath</h3><button onclick="window.open('https://coolmathgames.com','_blank')">500+ Games</button></div>
-<div class="game"><h3>Miniclip</h3><button onclick="window.open('https://miniclip.com','_blank')">500+ Games</button></div>
+<div class="game"><h3>Venge</h3><button onclick="window.open('https://venge.io','_blank')">Play</button></div>
 
 </div>
 
@@ -246,28 +191,54 @@ games[index].scrollIntoView({behavior:"smooth",inline:"center"});
 }
 }
 
-update();
+/* 🎧 FAHH + BASS SOUND ENGINE */
+function playSwitchSound(dir){
+
+const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+const osc = ctx.createOscillator();
+const gain = ctx.createGain();
+const bass = ctx.createOscillator();
+
+osc.type = "sawtooth";
+osc.frequency.setValueAtTime(dir > 0 ? 600 : 300, ctx.currentTime);
+
+bass.type = "sine";
+bass.frequency.setValueAtTime(80, ctx.currentTime);
+
+gain.gain.setValueAtTime(0.2, ctx.currentTime);
+gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.4);
+
+osc.connect(gain);
+bass.connect(gain);
+gain.connect(ctx.destination);
+
+osc.start();
+bass.start();
+
+osc.stop(ctx.currentTime + 0.4);
+bass.stop(ctx.currentTime + 0.4);
+}
 
 function moveLeft(){
 index=(index-1+games.length)%games.length;
 update();
+playSwitchSound(-1);
 }
 
 function moveRight(){
 index=(index+1)%games.length;
 update();
+playSwitchSound(1);
 }
 
 document.addEventListener("keydown",(e)=>{
-
 if(e.key==="ArrowRight"||e.key==="d") moveRight();
 if(e.key==="ArrowLeft"||e.key==="a") moveLeft();
-
-if(e.key==="Enter"){
-games[index].querySelector("button").click();
-}
-
+if(e.key==="Enter") games[index].querySelector("button").click();
 });
+
+update();
 
 /* MUSIC */
 const music=document.getElementById("music");
@@ -286,4 +257,4 @@ btn.innerText="🎵 Play Music";
 </script>
 
 </body>
-                                       </html>
+    </html>

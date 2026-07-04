@@ -167,6 +167,19 @@ button {
     100% { transform: scale(0) translate(var(--x), var(--y)); opacity: 0; }
 }
 
+/* MUSIC BUTTON */
+#musicBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px;
+    background: #8a2be2;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    z-index: 10;
+}
+
 </style>
 </head>
 
@@ -180,6 +193,7 @@ button {
 <p>made by moiz</p>
 </header>
 
+<!-- 21 GAMES -->
 <div class="menu">
 
 <div class="game"><h3>Roblox</h3><button>Play</button></div>
@@ -210,18 +224,27 @@ button {
 
 </div>
 
+<!-- 🎵 MUSIC (PUT YOUR music.mp3 IN SAME FOLDER) -->
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn">🎵 Play Music</button>
+
 <script>
 
 const games = document.querySelectorAll(".game");
 let index = 0;
 const warp = document.getElementById("warp");
 
+/* WARP */
 function triggerWarp(){
     warp.classList.remove("active");
     void warp.offsetWidth;
     warp.classList.add("active");
 }
 
+/* UPDATE */
 function update(){
     triggerWarp();
 
@@ -270,7 +293,7 @@ update();
 }
 });
 
-/* CLICK PARTICLES */
+/* PARTICLES */
 document.addEventListener("click",(e)=>{
 for(let i=0;i<20;i++){
 const p=document.createElement("div");
@@ -290,7 +313,21 @@ setTimeout(()=>p.remove(),900);
 }
 });
 
+/* MUSIC CONTROL */
+const music=document.getElementById("music");
+const btn=document.getElementById("musicBtn");
+
+btn.onclick=()=>{
+if(music.paused){
+music.play();
+btn.innerText="⏸ Pause Music";
+}else{
+music.pause();
+btn.innerText="🎵 Play Music";
+}
+};
+
 </script>
 
 </body>
-                                              </html>
+    </html>

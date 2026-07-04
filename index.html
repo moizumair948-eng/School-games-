@@ -22,7 +22,6 @@ canvas{
 position:fixed;
 inset:0;
 z-index:-1;
-opacity:1;
 }
 
 /* HEADER */
@@ -100,16 +99,6 @@ background:rgba(0,0,0,0.5);
 color:#00ffff;
 box-shadow:0 0 15px #00ffff;
 cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:center;
-font-family:Arial;
-font-weight:700;
-transition:0.2s;
-}
-
-.dpad button:active{
-transform:scale(0.92);
 }
 
 /* CONTROLS */
@@ -120,17 +109,20 @@ right:20px;
 display:flex;
 flex-direction:column;
 gap:10px;
-z-index:20;
+z-index:999;
+background:rgba(0,0,0,0.35);
+padding:10px;
+border-radius:10px;
+backdrop-filter: blur(6px);
 }
 
 #musicBtn{
 padding:12px;
 border:2px solid #ff00ff;
-background:rgba(0,0,0,0.6);
+background:black;
 color:#ff00ff;
 box-shadow:0 0 15px #ff00ff;
 cursor:pointer;
-transition:0.2s;
 }
 
 #speed{
@@ -154,6 +146,7 @@ border-radius:6px;
 font-family:Orbitron;
 font-size:11px;
 box-shadow:0 0 10px #00ffff;
+display:block;
 }
 
 /* NEON FIX */
@@ -181,16 +174,6 @@ transform:scale(1.05);
 #musicBtn:hover{
 box-shadow:0 0 25px #ff00ff, 0 0 45px #ff00ff;
 transform:scale(1.05);
-}
-
-.dpad button:hover{
-box-shadow:0 0 25px #00ffff, 0 0 45px #00ffff;
-transform:scale(1.08);
-}
-
-#secretInput:focus{
-box-shadow:0 0 25px #00ffff, 0 0 40px #ff00ff;
-transform:scale(1.02);
 }
 
 </style>
@@ -260,10 +243,7 @@ s:0.4+Math.random()*1.0
 
 let t=0;
 
-//////////////////////////////////////////////////////
-// 🎵 MUSIC SYSTEM
-//////////////////////////////////////////////////////
-
+/* MUSIC */
 const music=document.getElementById("music");
 const musicBtn=document.getElementById("musicBtn");
 
@@ -294,10 +274,7 @@ musicBtn.innerText="🎵 music";
 }
 };
 
-//////////////////////////////////////////////////////
-// 🔐 SECRET CODE → RAINBOW MODE
-//////////////////////////////////////////////////////
-
+/* SECRET BOX */
 const secretInput=document.getElementById("secretInput");
 
 secretInput.addEventListener("keydown",(e)=>{
@@ -313,34 +290,29 @@ let start=Date.now();
 
 const interval=setInterval(()=>{
 
-let hue=(Date.now()/10)%360;
+let hue=(Date.now()/15)%360;
 
-/* screen rainbow warp */
-document.body.style.filter=`hue-rotate(${hue}deg) saturate(3) brightness(1.3)`;
+/* SAFE rainbow (NO zoom, NO lag) */
+canvas.style.filter=`hue-rotate(${hue}deg)`;
 
-/* boost motion */
 musicBoost=1.2;
 
 if(Date.now()-start>60000){
 clearInterval(interval);
 rainbowMode=false;
 musicBoost=0;
-document.body.style.filter="none";
+canvas.style.filter="none";
 secretInput.value="";
 }
-},50);
+},60);
 }
 }
 });
 
-//////////////////////////////////////////////////////
-// 🌌 DRAW LOOP
-//////////////////////////////////////////////////////
-
+/* DRAW */
 function draw(){
 t+=0.002;
 
-/* MUSIC ENERGY */
 if(musicOn){
 analyser.getByteFrequencyData(data);
 let sum=0;
@@ -348,17 +320,12 @@ for(let i=0;i<data.length;i++) sum+=data[i];
 musicBoost = (sum / data.length) / 70;
 }
 
-/* BACKGROUND */
 let g=ctx.createRadialGradient(
 canvas.width/2,canvas.height/2,0,
 canvas.width/2,canvas.height/2,canvas.width
 );
 
-g.addColorStop(0, rainbowMode
-? `rgba(${Math.random()*255},${Math.random()*255},255,0.5)`
-: "rgba(60,0,120,0.35)"
-);
-
+g.addColorStop(0,"rgba(60,0,120,0.35)");
 g.addColorStop(0.3,"rgba(0,80,160,0.25)");
 g.addColorStop(0.6,"rgba(0,0,0,0.85)");
 g.addColorStop(1,"black");
@@ -366,12 +333,12 @@ g.addColorStop(1,"black");
 ctx.fillStyle=g;
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
-/* STARS */
+/* stars */
 for(let s of stars){
 
 let finalSpeed = speedControl + musicBoost;
 
-if(rainbowMode) finalSpeed *= 2;
+if(rainbowMode) finalSpeed *= 1.5;
 
 s.y += s.s * finalSpeed;
 s.x += Math.sin(t+s.y*0.01)*0.2;
@@ -389,7 +356,7 @@ requestAnimationFrame(draw);
 
 draw();
 
-/* GAME SYSTEM (UNCHANGED) */
+/* GAME SYSTEM */
 const games=[
 "Poki","CrazyGames","Y8","Miniclip","Armor Games",
 "Slither","Agar","2048","Tetris","Dino",

@@ -44,6 +44,7 @@ header p {
     width: 320px;
     height: 320px;
     animation: float 6s ease-in-out infinite;
+    z-index: 0;
 }
 
 .saturn::before {
@@ -166,23 +167,6 @@ button {
     100% { transform: scale(0) translate(var(--x), var(--y)); opacity: 0; }
 }
 
-/* MUSIC */
-#musicBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 12px;
-    background: #8a2be2;
-    color: white;
-    border: none;
-    border-radius: 10px;
-}
-
-.saturn {
-    position: fixed;
-    z-index: 0;
-}
-
 </style>
 </head>
 
@@ -226,26 +210,18 @@ button {
 
 </div>
 
-<button id="musicBtn">🎵 Music</button>
-
-<audio id="music" loop>
-<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3">
-</audio>
-
 <script>
 
 const games = document.querySelectorAll(".game");
 let index = 0;
 const warp = document.getElementById("warp");
 
-/* WARP */
 function triggerWarp(){
     warp.classList.remove("active");
     void warp.offsetWidth;
     warp.classList.add("active");
 }
 
-/* UPDATE */
 function update(){
     triggerWarp();
 
@@ -258,7 +234,7 @@ function update(){
 
 update();
 
-/* KEYBOARD + WASD */
+/* KEYBOARD */
 document.addEventListener("keydown",(e)=>{
 
     if(e.key==="ArrowRight" || e.key==="d" || e.key==="D"){
@@ -268,16 +244,6 @@ document.addEventListener("keydown",(e)=>{
 
     if(e.key==="ArrowLeft" || e.key==="a" || e.key==="A"){
         index=(index-1+games.length)%games.length;
-        update();
-    }
-
-    if(e.key==="w" || e.key==="W"){
-        index=(index-1+games.length)%games.length;
-        update();
-    }
-
-    if(e.key==="s" || e.key==="S"){
-        index=(index+1)%games.length;
         update();
     }
 
@@ -304,15 +270,7 @@ update();
 }
 });
 
-/* CLICK SELECT */
-games.forEach((g,i)=>{
-g.addEventListener("click",()=>{
-index=i;
-update();
-});
-});
-
-/* PARTICLES */
+/* CLICK PARTICLES */
 document.addEventListener("click",(e)=>{
 for(let i=0;i<20;i++){
 const p=document.createElement("div");
@@ -332,21 +290,7 @@ setTimeout(()=>p.remove(),900);
 }
 });
 
-/* MUSIC */
-const music=document.getElementById("music");
-const btn=document.getElementById("musicBtn");
-
-btn.onclick=()=>{
-if(music.paused){
-music.play();
-btn.innerText="⏸ Pause Music";
-}else{
-music.pause();
-btn.innerText="🎵 Music";
-}
-};
-
 </script>
 
 </body>
-  </html>
+                                              </html>

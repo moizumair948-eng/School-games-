@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Olive Class Gaming Hub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -24,7 +23,7 @@ position:fixed;
 inset:0;
 z-index:-10;
 opacity:0;
-transition:2s;
+transition:1.5s;
 }
 
 /* HEADER */
@@ -33,7 +32,7 @@ text-align:center;
 padding:20px;
 text-shadow:0 0 20px cyan;
 opacity:0;
-transition:2s;
+transition:1.5s;
 }
 
 /* MENU */
@@ -44,7 +43,7 @@ padding:30px;
 margin-left:90px;
 overflow-x:auto;
 opacity:0;
-transition:2s;
+transition:1.5s;
 }
 
 .game{
@@ -58,11 +57,11 @@ transition:0.2s;
 }
 
 .game.selected{
-transform:scale(1.3);
-box-shadow:0 0 50px cyan;
+transform:scale(1.4);
+box-shadow:0 0 70px cyan;
+border-color:#ff00ff;
 }
 
-/* BUTTON */
 button{
 margin-top:10px;
 padding:10px 14px;
@@ -74,7 +73,7 @@ box-shadow:0 0 15px #00ffff;
 cursor:pointer;
 }
 
-/* 🎮 CONTROLLER */
+/* CONTROLLER */
 .controller{
 position:fixed;
 left:10px;
@@ -85,7 +84,7 @@ flex-direction:column;
 gap:10px;
 z-index:10;
 opacity:0;
-transition:2s;
+transition:1.5s;
 }
 
 .controller button{
@@ -114,32 +113,53 @@ background:black;
 color:#ff00ff;
 box-shadow:0 0 20px #ff00ff;
 opacity:0;
-transition:2s;
+transition:1.5s;
 }
+
+/* VISUALIZER */
+#bars{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+height:120px;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+gap:2px;
+opacity:0;
+}
+
+.bar{
+width:4px;
+height:10px;
+background:cyan;
+box-shadow:0 0 10px cyan;
+}
+
+/* SHAKE */
+@keyframes shake{
+0%{transform:translate(0,0)}
+25%{transform:translate(2px,-2px)}
+50%{transform:translate(-2px,2px)}
+75%{transform:translate(2px,2px)}
+100%{transform:translate(0,0)}
+}
+
+.shake{animation:shake 0.15s infinite;}
 
 </style>
 </head>
 
 <body>
 
-<!-- BOOT -->
-<div id="boot"
-style="position:fixed;inset:0;background:black;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:999;color:white;">
-<h1>BOOTING SYSTEM</h1>
-<div style="width:300px;height:8px;border:2px solid cyan;">
-<div id="fill" style="width:0%;height:100%;background:cyan;"></div>
-</div>
-<p id="percent">0%</p>
-</div>
-
 <canvas id="space"></canvas>
 
 <header>
 <h1>OLIVE CLASS GAMING HUB</h1>
-<p>cinematic neon system</p>
+<p>NEON WARP SYSTEM</p>
 </header>
 
-<!-- CONTROLLER -->
 <div class="controller">
 <button onclick="move(-1)">⬅</button>
 <button onclick="move(1)">➡</button>
@@ -150,7 +170,7 @@ style="position:fixed;inset:0;background:black;display:flex;flex-direction:colum
 
 <div class="menu">
 
-<!-- 25 GAMES -->
+<!-- 25 GAMES RESTORED -->
 <div class="game"><h3>Poki</h3><button onclick="go('https://poki.com')">Play</button></div>
 <div class="game"><h3>CrazyGames</h3><button onclick="go('https://crazygames.com')">Play</button></div>
 <div class="game"><h3>Y8</h3><button onclick="go('https://y8.com')">Play</button></div>
@@ -166,7 +186,7 @@ style="position:fixed;inset:0;background:black;display:flex;flex-direction:colum
 <div class="game"><h3>Shell Shockers</h3><button onclick="go('https://shellshock.io')">Play</button></div>
 <div class="game"><h3>Krunker</h3><button onclick="go('https://krunker.io')">Play</button></div>
 <div class="game"><h3>Venge</h3><button onclick="go('https://venge.io')">Play</button></div>
-<div class="game"><h3>1v1.lol</h3><button onclick="go('https://buildnow-gg.io/')">Play</button></div>
+<div class="game"><h3>1v1.lol</h3><button onclick="go('https://1v1.lol')">Play</button></div>
 <div class="game"><h3>Zombs Royale</h3><button onclick="go('https://zombsroyale.io')">Play</button></div>
 
 <div class="game"><h3>Paper.io</h3><button onclick="go('https://paper-io.com')">Play</button></div>
@@ -174,6 +194,12 @@ style="position:fixed;inset:0;background:black;display:flex;flex-direction:colum
 <div class="game"><h3>Bonk.io</h3><button onclick="go('https://bonk.io')">Play</button></div>
 <div class="game"><h3>Hole.io</h3><button onclick="go('https://hole-io.com')">Play</button></div>
 <div class="game"><h3>Run 3</h3><button onclick="go('https://run3.io')">Play</button></div>
+
+<div class="game"><h3>Roblox</h3><button onclick="go('https://roblox.com')">Play</button></div>
+<div class="game"><h3>Coolmath</h3><button onclick="go('https://coolmathgames.com')">Play</button></div>
+<div class="game"><h3>Crazy Cars</h3><button onclick="go('https://poki.com/en/g/madalin-stunt-cars-2')">Play</button></div>
+<div class="game"><h3>Stickman Hook</h3><button onclick="go('https://poki.com/en/g/stickman-hook')">Play</button></div>
+<div class="game"><h3>Fireboy & Watergirl</h3><button onclick="go('https://poki.com/en/g/fireboy-and-watergirl-forest-temple')">Play</button></div>
 
 </div>
 
@@ -183,31 +209,28 @@ style="position:fixed;inset:0;background:black;display:flex;flex-direction:colum
 
 <button id="musicBtn">🎵 Play Music</button>
 
+<div id="bars"></div>
+
 <script>
 
-/* 🌌 GALAXY */
+/* 🌌 WARP BACKGROUND */
 const canvas=document.getElementById("space");
 const ctx=canvas.getContext("2d");
 
 canvas.width=innerWidth;
 canvas.height=innerHeight;
 
-const stars=Array(600).fill().map(()=>({
-angle:Math.random()*Math.PI*2,
-radius:Math.random()*canvas.width,
-speed:0.002+Math.random()*0.003,
-size:Math.random()*2,
-layer:Math.random()
+let particles=Array(900).fill().map(()=>({
+x:(Math.random()-0.5)*canvas.width,
+y:(Math.random()-0.5)*canvas.height,
+z:Math.random()*canvas.width,
+speed:2+Math.random()*4
 }));
 
-let t=0;
-
-/* DRAW */
 function draw(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-t+=0.003;
 
-const g=ctx.createRadialGradient(
+let grad=ctx.createRadialGradient(
 canvas.width/2,
 canvas.height/2,
 100,
@@ -216,28 +239,34 @@ canvas.height/2,
 canvas.width
 );
 
-g.addColorStop(0,"rgba(0,255,255,0.12)");
-g.addColorStop(0.5,"rgba(255,0,255,0.06)");
-g.addColorStop(1,"black");
+grad.addColorStop(0,"rgba(0,255,255,0.18)");
+grad.addColorStop(0.4,"rgba(255,0,255,0.08)");
+grad.addColorStop(1,"black");
 
-ctx.fillStyle=g;
+ctx.fillStyle=grad;
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
-for(let s of stars){
+for(let p of particles){
 
-s.angle+=s.speed;
+p.z-=p.speed;
+if(p.z<=1){
+p.z=canvas.width;
+p.x=(Math.random()-0.5)*canvas.width;
+p.y=(Math.random()-0.5)*canvas.height;
+}
 
-let x=canvas.width/2 + Math.cos(s.angle)*s.radius;
-let y=canvas.height/2 + Math.sin(s.angle)*s.radius;
+let k=128/p.z;
+let sx=p.x*k+canvas.width/2;
+let sy=p.y*k+canvas.height/2;
 
-x+=Math.sin(t)*20*s.layer;
-y+=Math.cos(t)*20*s.layer;
+let size=(1-p.z/canvas.width)*3;
 
-ctx.fillStyle=`rgba(0,255,255,${1-s.radius/canvas.width})`;
+ctx.beginPath();
+ctx.fillStyle=`rgba(0,255,255,${1-p.z/canvas.width})`;
 ctx.shadowBlur=20;
 ctx.shadowColor="#00ffff";
-
-ctx.fillRect(x,y,s.size,s.size);
+ctx.arc(sx,sy,size,0,Math.PI*2);
+ctx.fill();
 }
 
 requestAnimationFrame(draw);
@@ -266,7 +295,7 @@ function activateGame(){
 games[index].querySelector("button").click();
 }
 
-/* MUSIC */
+/* 🎵 AUDIO SYNC */
 const music=document.getElementById("music");
 const musicBtn=document.getElementById("musicBtn");
 
@@ -280,72 +309,87 @@ analyser.connect(audioCtx.destination);
 
 const data=new Uint8Array(analyser.frequencyBinCount);
 
+/* BARS */
+const bars=document.getElementById("bars");
+
+for(let i=0;i<60;i++){
+let b=document.createElement("div");
+b.className="bar";
+bars.appendChild(b);
+}
+
+const barEls=document.querySelectorAll(".bar");
+
+let lastBeat=0;
+
 function beat(){
 analyser.getByteFrequencyData(data);
-let sum=0;
-for(let i=0;i<data.length;i++)sum+=data[i];
-let b=sum/data.length/255;
 
-document.body.style.filter=`brightness(${1+b*0.3})`;
+let sum=0;
+let bass=data[2]+data[3]+data[4];
+
+for(let i=0;i<data.length;i++)sum+=data[i];
+
+let avg=sum/data.length/255;
+let energy=bass/255;
+
+document.body.style.filter=`brightness(${1+avg*0.5}) saturate(${1+avg})`;
 
 games.forEach(g=>{
-g.style.transform=`scale(${1+b*0.04})`;
+g.style.transform=`scale(${1+avg*0.08})`;
 });
+
+if(energy>0.6 && Date.now()-lastBeat>200){
+document.body.classList.add("shake");
+setTimeout(()=>document.body.classList.remove("shake"),120);
+lastBeat=Date.now();
+}
+
+for(let i=0;i<barEls.length;i++){
+barEls[i].style.height=(data[i]/255*120)+"px";
+}
 
 requestAnimationFrame(beat);
 }
 
+/* START */
 musicBtn.onclick=async()=>{
 await audioCtx.resume();
+
 if(music.paused){
 music.play();
 beat();
 musicBtn.innerText="⏸ Pause Music";
+
+canvas.style.opacity="1";
+document.querySelector("header").style.opacity="1";
+document.querySelector(".menu").style.opacity="1";
+document.querySelector(".controller").style.opacity="1";
+document.getElementById("bars").style.opacity="1";
 }else{
 music.pause();
 musicBtn.innerText="🎵 Play Music";
 }
 };
 
-/* 🔥 SAFWAAN EASTER EGG */
-let secret="";
-document.addEventListener("keydown",(e)=>{
-secret+=e.key.toLowerCase();
-if(secret.includes("safwaan")){
-document.body.style.filter="hue-rotate(200deg) saturate(3)";
-}
-});
-
-/* 🎬 BOOT INTRO */
+/* BOOT */
 let p=0;
-const fill=document.getElementById("fill");
-const percent=document.getElementById("percent");
-const boot=document.getElementById("boot");
-
-function loading(){
+let boot=setInterval(()=>{
 p++;
-fill.style.width=p+"%";
-percent.innerText=p+"%";
-
-if(p<100){
-setTimeout(loading,25);
-}else{
-boot.style.opacity="0";
-setTimeout(()=>boot.remove(),800);
+if(p>=100){
+clearInterval(boot);
+draw();
 
 canvas.style.opacity="1";
 document.querySelector("header").style.opacity="1";
 document.querySelector(".menu").style.opacity="1";
 document.querySelector(".controller").style.opacity="1";
-document.querySelector("#musicBtn").style.opacity="1";
-
-draw();
+document.getElementById("musicBtn").style.opacity="1";
+document.getElementById("bars").style.opacity="1";
 }
-}
-
-loading();
+},20);
 
 </script>
 
 </body>
-                                     </html>
+                                 </html>

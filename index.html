@@ -18,12 +18,11 @@ box-sizing:border-box;
 
 body{
 margin:0;
+font-family:'Orbitron',sans-serif;
 background:black;
 color:white;
-font-family:'Orbitron',sans-serif;
 overflow:hidden;
 }
-
 
 canvas{
 position:fixed;
@@ -32,301 +31,197 @@ z-index:-1;
 }
 
 
-
 /* HEADER */
 
 header{
-
 text-align:center;
 padding:20px;
 text-shadow:0 0 20px cyan;
-
 }
-
 
 header h1{
-
 margin:0;
 font-size:22px;
-
+text-transform:lowercase;
 }
-
 
 header p{
-
 font-size:11px;
 opacity:.7;
-
 }
 
 
-
-
-
-/* GAMES */
+/* GAME MENU */
 
 .menu{
-
 padding:30px;
 margin-left:40px;
 overflow:hidden;
-
 }
-
 
 .track{
-
 display:flex;
 gap:20px;
-transition:.4s;
-
+transition:.5s;
 }
-
 
 .game{
-
 min-width:170px;
 padding:15px;
-
-background:rgba(255,255,255,.05);
-
-border:2px solid cyan;
-
 border-radius:12px;
-
+background:rgba(255,255,255,0.05);
+border:2px solid cyan;
 text-align:center;
-
 opacity:.6;
-
 transform:scale(.9);
-
 transition:.3s;
-
 }
-
-
 
 .game.selected{
-
 opacity:1;
-
 transform:scale(1.15);
-
 border-color:#ff00ff;
-
 box-shadow:0 0 30px cyan;
-
 }
-
 
 
 .game button{
 
-padding:10px;
-
 margin-top:10px;
-
-background:black;
-
-color:#00ffff;
-
-border:2px solid cyan;
-
+padding:10px 15px;
 border-radius:10px;
-
-font-family:Orbitron;
+background:black;
+color:#00ffff;
+border:2px solid cyan;
+font-family:'Orbitron';
 
 }
 
 
-
-
-/* CONTROLLER */
-
+/* DPAD */
 
 .dpad{
 
 position:fixed;
-
-bottom:150px;
-
+bottom:140px;
 left:50%;
-
 transform:translateX(-50%);
-
 display:flex;
-
 gap:20px;
 
 }
 
-
-
 .dpad button{
 
 width:75px;
-
 height:75px;
-
-background:black;
-
-color:cyan;
-
-border:2px solid cyan;
-
-border-radius:20px;
-
 font-size:25px;
-
+border-radius:20px;
+background:black;
+color:#00ffff;
+border:2px solid cyan;
 box-shadow:0 0 20px cyan;
 
 }
 
 
-
-/* MUSIC PANEL */
-
+/* CONTROLS */
 
 #controls{
 
 position:fixed;
-
 right:15px;
-
 bottom:15px;
-
 display:flex;
-
 flex-direction:column;
-
 gap:10px;
-
 padding:15px;
-
 background:rgba(0,0,0,.7);
-
-border:2px solid cyan;
-
 border-radius:15px;
-
+border:2px solid cyan;
 box-shadow:0 0 20px cyan;
 
 }
 
 
-
 button,select,input{
 
-font-family:Orbitron;
+font-family:'Orbitron',sans-serif;
 
 }
-
 
 
 #musicBtn,
 #stopBtn{
 
 padding:12px;
-
 background:black;
-
 color:#ff00ff;
-
 border:2px solid #ff00ff;
-
 border-radius:10px;
 
 }
 
 
-
 select{
 
 background:black;
-
-color:cyan;
-
+color:#00ffff;
 border:2px solid cyan;
-
 padding:7px;
 
 }
 
 
-
 input{
 
-accent-color:cyan;
+accent-color:#00ffff;
 
 }
-
 
 
 label{
 
+color:#00ffff;
 font-size:12px;
 
-color:cyan;
-
 }
-
-
 
 
 .visualizer{
 
 height:50px;
-
 display:flex;
-
 gap:5px;
-
 align-items:end;
 
 }
 
 
-
 .bar{
 
 width:8px;
-
 height:10px;
-
-background:cyan;
-
+background:#00ffff;
 box-shadow:0 0 15px cyan;
 
 }
 
 
-
-
 #secretInput{
 
-padding:7px;
-
 background:black;
-
-color:cyan;
-
+color:#00ffff;
 border:2px solid cyan;
-
 border-radius:8px;
+padding:7px;
 
 }
 
-
 </style>
-
-</head>
-
-
 <body>
 
-
 <canvas id="bg"></canvas>
-
 
 
 <header>
@@ -336,7 +231,6 @@ border-radius:8px;
 <p>created by moiz</p>
 
 </header>
-
 
 
 
@@ -360,6 +254,7 @@ border-radius:8px;
 
 
 
+
 <div id="controls">
 
 
@@ -374,39 +269,44 @@ border-radius:8px;
 
 
 
-
 <select id="songPicker">
 
 <option value="music/4 RAWS.mp3">
 4 RAWS
 </option>
 
-<option value="music/Why You Bulleh Me Phonk.mp3">
-Why You Bulleh Me Phonk
-</option>
-
 <option value="music/Misery.mp3">
 Misery
+</option>
+
+<option value="music/Why You Bulleh Me Phonk.mp3">
+Why You Bulleh Me Phonk
 </option>
 
 <option value="music/Meant To Be.mp3">
 Meant To Be
 </option>
 
+
 </select>
 
 
 
 
-<label>volume</label>
+<label>
+volume
+</label>
 
 <input id="volume" type="range" min="0" max="1" step="0.01" value="0.7">
 
 
 
-<label>star speed</label>
+<label>
+star speed
+</label>
 
 <input id="speed" type="range" min="0.2" max="3" step="0.1" value="1">
+
 
 
 
@@ -424,10 +324,12 @@ Meant To Be
 
 
 
-<label>secret code</label>
 
-<input id="secretInput" placeholder="enter code">
+<label>
+secret code
+</label>
 
+<input id="secretInput" placeholder="enter code...">
 
 
 </div>
@@ -435,8 +337,12 @@ Meant To Be
 
 
 
-<audio id="music"></audio>
-<audio id="music" controls></audio>
+<audio id="music" loop>
+
+<source src="music/4 RAWS.mp3" type="audio/mpeg">
+
+</audio>
+
 
 
 <script>
@@ -452,47 +358,10 @@ let musicPower=0;
 
 /* MUSIC */
 
-music.src=songPicker.value;
 music.volume=volume.value;
 
 
-let audioContext;
-let analyser;
-let source;
-let data;
-
-
-function setupAudio(){
-
-if(audioContext)return;
-
-
-audioContext=new(window.AudioContext||window.webkitAudioContext)();
-
-source=audioContext.createMediaElementSource(music);
-
-analyser=audioContext.createAnalyser();
-
-analyser.fftSize=256;
-
-
-source.connect(analyser);
-analyser.connect(audioContext.destination);
-
-
-data=new Uint8Array(analyser.frequencyBinCount);
-
-}
-
-
-
-musicBtn.onclick=async()=>{
-
-
-setupAudio();
-
-await audioContext.resume();
-
+musicBtn.onclick=()=>{
 
 if(!playing){
 
@@ -502,9 +371,7 @@ playing=true;
 
 musicBtn.innerHTML="⏸ pause music";
 
-
 }else{
-
 
 music.pause();
 
@@ -512,9 +379,7 @@ playing=false;
 
 musicBtn.innerHTML="▶ play music";
 
-
 }
-
 
 };
 
@@ -538,7 +403,6 @@ songPicker.onchange=()=>{
 
 music.src=songPicker.value;
 
-
 if(playing){
 
 music.play();
@@ -558,8 +422,47 @@ music.volume=volume.value;
 
 
 
+/* MUSIC VISUALIZER */
 
-/* VISUALIZER */
+let audioContext;
+let analyser;
+let source;
+let data;
+
+
+function startAudio(){
+
+if(audioContext)return;
+
+audioContext=new(window.AudioContext||window.webkitAudioContext)();
+
+source=audioContext.createMediaElementSource(music);
+
+analyser=audioContext.createAnalyser();
+
+analyser.fftSize=256;
+
+source.connect(analyser);
+
+analyser.connect(audioContext.destination);
+
+data=new Uint8Array(analyser.frequencyBinCount);
+
+}
+
+
+musicBtn.addEventListener("click",()=>{
+
+startAudio();
+
+if(audioContext){
+
+audioContext.resume();
+
+}
+
+});
+
 
 
 const bars=document.querySelectorAll(".bar");
@@ -567,15 +470,11 @@ const bars=document.querySelectorAll(".bar");
 
 function visualizer(){
 
-
 if(analyser){
-
 
 analyser.getByteFrequencyData(data);
 
-
 let total=0;
-
 
 for(let i=0;i<data.length;i++){
 
@@ -583,17 +482,12 @@ total+=data[i];
 
 }
 
-
 musicPower=total/data.length;
-
 
 
 bars.forEach((bar,i)=>{
 
-
-bar.style.height=
-(10+(data[i]||0)/2)+"px";
-
+bar.style.height=(10+(data[i]||0)/3)+"px";
 
 });
 
@@ -601,11 +495,9 @@ bar.style.height=
 }
 
 
-
 requestAnimationFrame(visualizer);
 
 }
-
 
 visualizer();
 
@@ -613,7 +505,7 @@ visualizer();
 
 
 
-/* BACKGROUND */
+/* STAR BACKGROUND */
 
 
 const canvas=document.getElementById("bg");
@@ -628,7 +520,6 @@ canvas.width=innerWidth;
 canvas.height=innerHeight;
 
 }
-
 
 resize();
 
@@ -653,13 +544,11 @@ s:Math.random()+0.3
 
 });
 
-
 }
 
 
 
 let starSpeed=1;
-
 
 
 document.getElementById("speed").oninput=(e)=>{
@@ -670,8 +559,7 @@ starSpeed=e.target.value;
 
 
 
-function drawStars(){
-
+function draw(){
 
 ctx.fillStyle="black";
 
@@ -683,17 +571,15 @@ canvas.height
 );
 
 
-
-stars.forEach(star=>{
-
-
-star.y+=star.s*starSpeed+(musicPower/100);
+stars.forEach(s=>{
 
 
+s.y+=s.s*starSpeed+(musicPower/100);
 
-if(star.y>canvas.height){
 
-star.y=0;
+if(s.y>canvas.height){
+
+s.y=0;
 
 }
 
@@ -704,9 +590,9 @@ ctx.fillStyle="cyan";
 ctx.beginPath();
 
 ctx.arc(
-star.x,
-star.y,
-star.r,
+s.x,
+s.y,
+s.r,
 0,
 Math.PI*2
 );
@@ -717,20 +603,18 @@ ctx.fill();
 });
 
 
-requestAnimationFrame(drawStars);
-
+requestAnimationFrame(draw);
 
 }
 
 
-drawStars();
+draw();
 
 
 
 
 
-/* SECRET CODE */
-
+/* SECRET */
 
 document.getElementById("secretInput").addEventListener("keydown",(e)=>{
 
@@ -756,9 +640,7 @@ document.body.style.filter="none";
 
 }
 
-
 });
-
 
 
 
@@ -828,15 +710,11 @@ const links={
 const track=document.getElementById("track");
 
 
-
 games.forEach(game=>{
-
 
 let card=document.createElement("div");
 
-
 card.className="game";
-
 
 card.innerHTML=`
 
@@ -848,9 +726,7 @@ play
 
 `;
 
-
 track.appendChild(card);
-
 
 });
 
@@ -858,19 +734,15 @@ track.appendChild(card);
 
 const cards=document.querySelectorAll(".game");
 
-
 let index=0;
 
 
 
 function update(){
 
-
 cards.forEach((card,i)=>{
 
-
 card.classList.remove("selected");
-
 
 if(i===index){
 
@@ -878,49 +750,36 @@ card.classList.add("selected");
 
 }
 
-
 });
 
 
-
-track.style.transform=
-`translateX(${-index*190}px)`;
-
+track.style.transform=`translateX(${-index*190}px)`;
 
 }
-
 
 
 
 function move(dir){
 
-
 index=(index+dir+cards.length)%cards.length;
 
 update();
 
-
 }
-
 
 
 
 function openGame(name){
 
-window.open(
-links[name],
-"_blank"
-);
+window.open(links[name],"_blank");
 
 }
 
 
-
 update();
-
 
 </script>
 
 </body>
 
-</html>  
+</html>

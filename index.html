@@ -18,9 +18,9 @@ box-sizing:border-box;
 
 body{
 margin:0;
-font-family:'Orbitron',sans-serif;
 background:black;
 color:white;
+font-family:'Orbitron',sans-serif;
 overflow:hidden;
 }
 
@@ -32,51 +32,67 @@ z-index:-1;
 }
 
 
+
 /* HEADER */
 
 header{
+
 text-align:center;
 padding:20px;
 text-shadow:0 0 20px cyan;
+
 }
+
 
 header h1{
+
 margin:0;
 font-size:22px;
-text-transform:lowercase;
+
 }
+
 
 header p{
+
 font-size:11px;
 opacity:.7;
+
 }
 
 
 
-/* GAME MENU */
+
+
+/* GAMES */
 
 .menu{
+
 padding:30px;
 margin-left:40px;
 overflow:hidden;
+
 }
 
 
 .track{
+
 display:flex;
 gap:20px;
-transition:.5s;
+transition:.4s;
+
 }
 
 
 .game{
+
 min-width:170px;
 padding:15px;
-border-radius:12px;
 
 background:rgba(255,255,255,.05);
 
 border:2px solid cyan;
+
+border-radius:12px;
 
 text-align:center;
 
@@ -85,7 +101,9 @@ opacity:.6;
 transform:scale(.9);
 
 transition:.3s;
+
 }
+
 
 
 .game.selected{
@@ -96,20 +114,17 @@ transform:scale(1.15);
 
 border-color:#ff00ff;
 
-box-shadow:
-0 0 25px cyan,
-0 0 40px magenta;
+box-shadow:0 0 30px cyan;
 
 }
 
 
+
 .game button{
 
+padding:10px;
+
 margin-top:10px;
-
-padding:10px 15px;
-
-border-radius:10px;
 
 background:black;
 
@@ -117,15 +132,17 @@ color:#00ffff;
 
 border:2px solid cyan;
 
-font-family:Orbitron;
+border-radius:10px;
 
-box-shadow:0 0 15px cyan;
+font-family:Orbitron;
 
 }
 
 
 
+
 /* CONTROLLER */
+
 
 .dpad{
 
@@ -139,9 +156,10 @@ transform:translateX(-50%);
 
 display:flex;
 
-gap:25px;
+gap:20px;
 
 }
+
 
 
 .dpad button{
@@ -150,15 +168,15 @@ width:75px;
 
 height:75px;
 
-font-size:28px;
+background:black;
+
+color:cyan;
+
+border:2px solid cyan;
 
 border-radius:20px;
 
-background:black;
-
-color:#00ffff;
-
-border:2px solid cyan;
+font-size:25px;
 
 box-shadow:0 0 20px cyan;
 
@@ -166,7 +184,8 @@ box-shadow:0 0 20px cyan;
 
 
 
-/* CONTROL PANEL */
+/* MUSIC PANEL */
+
 
 #controls{
 
@@ -184,15 +203,24 @@ gap:10px;
 
 padding:15px;
 
-background:rgba(0,0,0,.65);
-
-border-radius:15px;
+background:rgba(0,0,0,.7);
 
 border:2px solid cyan;
+
+border-radius:15px;
 
 box-shadow:0 0 20px cyan;
 
 }
+
+
+
+button,select,input{
+
+font-family:Orbitron;
+
+}
+
 
 
 #musicBtn,
@@ -208,37 +236,40 @@ border:2px solid #ff00ff;
 
 border-radius:10px;
 
-font-family:Orbitron;
-
-cursor:pointer;
-
 }
 
 
-select,
-input{
+
+select{
 
 background:black;
 
-color:#00ffff;
+color:cyan;
 
 border:2px solid cyan;
 
-border-radius:8px;
-
 padding:7px;
 
-font-family:Orbitron;
+}
+
+
+
+input{
+
+accent-color:cyan;
 
 }
 
 
-#volume,
-#speed{
 
-width:150px;
+label{
+
+font-size:12px;
+
+color:cyan;
 
 }
+
 
 
 
@@ -262,7 +293,7 @@ width:8px;
 
 height:10px;
 
-background:#00ffff;
+background:cyan;
 
 box-shadow:0 0 15px cyan;
 
@@ -273,7 +304,15 @@ box-shadow:0 0 15px cyan;
 
 #secretInput{
 
-width:150px;
+padding:7px;
+
+background:black;
+
+color:cyan;
+
+border:2px solid cyan;
+
+border-radius:8px;
 
 }
 
@@ -287,6 +326,7 @@ width:150px;
 
 
 <canvas id="bg"></canvas>
+
 
 
 <header>
@@ -320,7 +360,6 @@ width:150px;
 
 
 
-
 <div id="controls">
 
 
@@ -332,6 +371,7 @@ width:150px;
 <button id="stopBtn">
 ⏹ stop
 </button>
+
 
 
 
@@ -358,19 +398,13 @@ Meant To Be
 
 
 
-<label>
-volume
-</label>
+<label>volume</label>
 
 <input id="volume" type="range" min="0" max="1" step="0.01" value="0.7">
 
 
 
-
-
-<label>
-star speed
-</label>
+<label>star speed</label>
 
 <input id="speed" type="range" min="0.2" max="3" step="0.1" value="1">
 
@@ -390,17 +424,13 @@ star speed
 
 
 
+<label>secret code</label>
 
-<label>
-secret code
-</label>
-
-<input id="secretInput" placeholder="enter code...">
+<input id="secretInput" placeholder="enter code">
 
 
 
 </div>
-
 
 
 
@@ -416,10 +446,8 @@ const stopBtn=document.getElementById("stopBtn");
 const songPicker=document.getElementById("songPicker");
 const volume=document.getElementById("volume");
 
-
 let playing=false;
 let musicPower=0;
-
 
 
 /* MUSIC */
@@ -428,8 +456,42 @@ music.src=songPicker.value;
 music.volume=volume.value;
 
 
+let audioContext;
+let analyser;
+let source;
+let data;
+
+
+function setupAudio(){
+
+if(audioContext)return;
+
+
+audioContext=new(window.AudioContext||window.webkitAudioContext)();
+
+source=audioContext.createMediaElementSource(music);
+
+analyser=audioContext.createAnalyser();
+
+analyser.fftSize=256;
+
+
+source.connect(analyser);
+analyser.connect(audioContext.destination);
+
+
+data=new Uint8Array(analyser.frequencyBinCount);
+
+}
+
+
 
 musicBtn.onclick=async()=>{
+
+
+setupAudio();
+
+await audioContext.resume();
 
 
 if(!playing){
@@ -460,7 +522,6 @@ musicBtn.innerHTML="▶ play music";
 
 stopBtn.onclick=()=>{
 
-
 music.pause();
 
 music.currentTime=0;
@@ -469,13 +530,11 @@ playing=false;
 
 musicBtn.innerHTML="▶ play music";
 
-
 };
 
 
 
 songPicker.onchange=()=>{
-
 
 music.src=songPicker.value;
 
@@ -485,7 +544,6 @@ if(playing){
 music.play();
 
 }
-
 
 };
 
@@ -501,47 +559,19 @@ music.volume=volume.value;
 
 
 
-/* AUDIO VISUALIZER */
-
-
-const audioContext =
-new(window.AudioContext||window.webkitAudioContext)();
-
-
-const source =
-audioContext.createMediaElementSource(music);
-
-
-const analyser =
-audioContext.createAnalyser();
-
-
-analyser.fftSize=256;
-
-
-source.connect(analyser);
-
-analyser.connect(audioContext.destination);
-
-
-
-const data =
-new Uint8Array(analyser.frequencyBinCount);
-
+/* VISUALIZER */
 
 
 const bars=document.querySelectorAll(".bar");
 
 
-
 function visualizer(){
 
 
-if(playing){
+if(analyser){
 
 
 analyser.getByteFrequencyData(data);
-
 
 
 let total=0;
@@ -560,8 +590,9 @@ musicPower=total/data.length;
 
 bars.forEach((bar,i)=>{
 
+
 bar.style.height=
-(10+data[i]*0.35)+"px";
+(10+(data[i]||0)/2)+"px";
 
 
 });
@@ -570,8 +601,8 @@ bar.style.height=
 }
 
 
-requestAnimationFrame(visualizer);
 
+requestAnimationFrame(visualizer);
 
 }
 
@@ -582,14 +613,12 @@ visualizer();
 
 
 
-
-/* GALAXY BACKGROUND */
+/* BACKGROUND */
 
 
 const canvas=document.getElementById("bg");
 
 const ctx=canvas.getContext("2d");
-
 
 
 function resize(){
@@ -603,7 +632,7 @@ canvas.height=innerHeight;
 
 resize();
 
-window.onresize=resize;
+window.addEventListener("resize",resize);
 
 
 
@@ -641,8 +670,7 @@ starSpeed=e.target.value;
 
 
 
-
-function draw(){
+function drawStars(){
 
 
 ctx.fillStyle="black";
@@ -656,16 +684,16 @@ canvas.height
 
 
 
-stars.forEach(s=>{
+stars.forEach(star=>{
 
 
-s.y+=s.s*starSpeed+(musicPower/80);
+star.y+=star.s*starSpeed+(musicPower/100);
 
 
 
-if(s.y>canvas.height){
+if(star.y>canvas.height){
 
-s.y=0;
+star.y=0;
 
 }
 
@@ -676,9 +704,9 @@ ctx.fillStyle="cyan";
 ctx.beginPath();
 
 ctx.arc(
-s.x,
-s.y,
-s.r,
+star.x,
+star.y,
+star.r,
 0,
 Math.PI*2
 );
@@ -689,21 +717,19 @@ ctx.fill();
 });
 
 
-
-requestAnimationFrame(draw);
+requestAnimationFrame(drawStars);
 
 
 }
 
 
-draw();
+drawStars();
 
 
 
 
 
-
-/* SECRET MODE */
+/* SECRET CODE */
 
 
 document.getElementById("secretInput").addEventListener("keydown",(e)=>{
@@ -745,6 +771,8 @@ const games=[
 
 "Poki",
 "CrazyGames",
+"Y8",
+"Miniclip",
 "Roblox",
 "Coolmath",
 "Slither",
@@ -753,7 +781,9 @@ const games=[
 "Tetris",
 "Krunker",
 "Venge",
-"Run 3"
+"1v1.lol",
+"Run 3",
+"Shell Shockers"
 
 ];
 
@@ -764,6 +794,10 @@ const links={
 "Poki":"https://poki.com",
 
 "CrazyGames":"https://crazygames.com",
+
+"Y8":"https://y8.com",
+
+"Miniclip":"https://miniclip.com",
 
 "Roblox":"https://roblox.com",
 
@@ -781,10 +815,13 @@ const links={
 
 "Venge":"https://venge.io",
 
-"Run 3":"https://run3.io"
+"1v1.lol":"https://1v1.lol",
+
+"Run 3":"https://run3.io",
+
+"Shell Shockers":"https://shellshock.io"
 
 };
-
 
 
 
@@ -801,13 +838,14 @@ let card=document.createElement("div");
 card.className="game";
 
 
-card.innerHTML=
+card.innerHTML=`
 
-`
 <h3>${game}</h3>
+
 <button onclick="openGame('${game}')">
 play
 </button>
+
 `;
 
 
@@ -815,7 +853,6 @@ track.appendChild(card);
 
 
 });
-
 
 
 
@@ -850,8 +887,8 @@ track.style.transform=
 `translateX(${-index*190}px)`;
 
 
-
 }
+
 
 
 
@@ -859,7 +896,6 @@ function move(dir){
 
 
 index=(index+dir+cards.length)%cards.length;
-
 
 update();
 
@@ -871,15 +907,20 @@ update();
 
 function openGame(name){
 
-
 window.open(
 links[name],
 "_blank"
 );
 
-
 }
 
 
 
-update();  
+update();
+
+
+</script>
+
+</body>
+
+</html>  

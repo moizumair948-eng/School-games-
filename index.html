@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,6 +10,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
+
+*{
+box-sizing:border-box;
+}
 
 body{
 margin:0;
@@ -24,7 +29,45 @@ inset:0;
 z-index:-1;
 }
 
+
+/* INTRO */
+
+.intro{
+position:fixed;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+background:black;
+z-index:9999;
+font-size:35px;
+color:#00ffff;
+text-shadow:
+0 0 10px cyan,
+0 0 30px cyan;
+animation:introFade 3s forwards;
+}
+
+@keyframes introFade{
+
+0%{
+opacity:1;
+}
+
+80%{
+opacity:1;
+}
+
+100%{
+opacity:0;
+pointer-events:none;
+}
+
+}
+
+
 /* HEADER */
+
 header{
 text-align:center;
 padding:20px;
@@ -33,399 +76,660 @@ text-shadow:0 0 20px cyan;
 
 header h1{
 margin:0;
-font-size:20px;
+font-size:22px;
 text-transform:lowercase;
 }
 
 header p{
-margin:0;
+margin:5px;
 font-size:11px;
-opacity:0.7;
-text-transform:lowercase;
+opacity:.7;
 }
 
-/* MENU */
+
+/* GAME MENU */
+
 .menu{
+
 display:flex;
 gap:20px;
 padding:30px;
 margin-left:40px;
-overflow-x:auto;
+overflow:hidden;
+
 }
+
 
 .track{
+
 display:flex;
 gap:20px;
-transition:0.5s;
+transition:.5s;
+
 }
+
 
 .game{
+
 min-width:170px;
+
 padding:15px;
+
 border-radius:12px;
-background:rgba(255,255,255,0.04);
+
+background:
+rgba(255,255,255,.05);
+
 border:2px solid #00ffff;
+
 text-align:center;
-transition:0.25s;
-transform:scale(0.9);
-opacity:0.6;
+
+transform:scale(.9);
+
+opacity:.6;
+
+transition:.25s;
+
 }
+
 
 .game.selected{
+
 transform:scale(1.15);
+
 opacity:1;
-box-shadow:0 0 30px cyan;
+
 border-color:#ff00ff;
+
+box-shadow:
+0 0 20px cyan,
+0 0 40px purple;
+
 }
 
-/* D-PAD */
-.dpad{
-position:fixed;
-bottom:140px;
-left:50%;
-transform:translateX(-50%);
-display:flex;
-gap:25px;
-z-index:10;
-}
 
-.dpad button{
-width:75px;
-height:75px;
-font-size:26px;
-border-radius:16px;
-border:2px solid #00ffff;
-background:rgba(0,0,0,0.5);
-color:#00ffff;
-box-shadow:0 0 15px #00ffff;
-cursor:pointer;
-}
-
-/* CONTROLS */
-#controls{
-position:fixed;
-bottom:20px;
-right:20px;
-display:flex;
-flex-direction:column;
-gap:10px;
-z-index:999;
-background:rgba(0,0,0,0.35);
-padding:10px;
-border-radius:10px;
-backdrop-filter: blur(6px);
-}
-
-#musicBtn{
-padding:12px;
-border:2px solid #ff00ff;
-background:black;
-color:#ff00ff;
-box-shadow:0 0 15px #ff00ff;
-cursor:pointer;
-}
-
-#speed{
-width:140px;
-accent-color:#00ffff;
-}
-
-label{
-color:#00ffff;
-font-size:12px;
-}
-
-#secretInput{
-width:140px;
-padding:6px;
-border:2px solid #00ffff;
-background:black;
-color:#00ffff;
-outline:none;
-border-radius:6px;
-font-family:Orbitron;
-font-size:11px;
-box-shadow:0 0 10px #00ffff;
-display:block;
-}
-
-/* NEON FIX */
-button{
-font-family:'Orbitron',sans-serif;
-transition:0.2s;
-}
 
 .game button{
+
 margin-top:10px;
-padding:10px 14px;
+
+padding:10px 15px;
+
 border-radius:10px;
-border:2px solid #00ffff;
-background:rgba(0,0,0,0.6);
+
+border:2px solid cyan;
+
+background:black;
+
 color:#00ffff;
-box-shadow:0 0 12px #00ffff;
+
 cursor:pointer;
+
+font-family:Orbitron;
+
+box-shadow:0 0 15px cyan;
+
 }
+
+
 
 .game button:hover{
-box-shadow:0 0 25px #00ffff, 0 0 40px #00ffff;
-transform:scale(1.05);
+
+transform:scale(1.1);
+
 }
 
-#musicBtn:hover{
-box-shadow:0 0 25px #ff00ff, 0 0 45px #ff00ff;
-transform:scale(1.05);
+
+/* D PAD */
+
+
+.dpad{
+
+position:fixed;
+
+bottom:150px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+display:flex;
+
+gap:25px;
+
 }
+
+
+.dpad button{
+
+width:75px;
+
+height:75px;
+
+font-size:28px;
+
+border-radius:20px;
+
+background:black;
+
+color:#00ffff;
+
+border:2px solid cyan;
+
+box-shadow:0 0 20px cyan;
+
+}
+
+
+
+/* MUSIC PANEL */
+
+
+#controls{
+
+position:fixed;
+
+bottom:20px;
+
+right:20px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+background:
+rgba(0,0,0,.5);
+
+padding:15px;
+
+border-radius:15px;
+
+border:1px solid cyan;
+
+backdrop-filter:blur(8px);
+
+box-shadow:0 0 20px cyan;
+
+}
+
+
+
+#musicBtn{
+
+padding:12px;
+
+border-radius:10px;
+
+border:2px solid magenta;
+
+background:black;
+
+color:magenta;
+
+box-shadow:0 0 20px magenta;
+
+cursor:pointer;
+
+}
+
+
+
+#volume{
+
+width:150px;
+
+accent-color:#ff00ff;
+
+}
+
+
+#speed{
+
+width:150px;
+
+accent-color:#00ffff;
+
+}
+
+
+
+label{
+
+font-size:12px;
+
+color:#00ffff;
+
+}
+
+
+
+/* MUSIC VISUALIZER */
+
+
+.visualizer{
+
+display:flex;
+
+gap:5px;
+
+height:50px;
+
+align-items:end;
+
+}
+
+
+
+.bar{
+
+width:8px;
+
+height:10px;
+
+background:#00ffff;
+
+box-shadow:0 0 15px cyan;
+
+}
+
+
+
+/* SECRET */
+
+
+#secretInput{
+
+width:150px;
+
+padding:7px;
+
+background:black;
+
+color:#00ffff;
+
+border:2px solid cyan;
+
+border-radius:8px;
+
+font-family:Orbitron;
+
+}
+
+
 
 </style>
+
 </head>
+
 
 <body>
 
+
+<div class="intro">
+OLIVE CLASS GAMING HUB
+</div>
+
+
 <canvas id="bg"></canvas>
 
+
 <header>
+
 <h1>olive class gaming hub</h1>
+
 <p>created by moiz</p>
+
 </header>
 
+
 <div class="menu">
+
 <div class="track" id="track"></div>
+
 </div>
 
+
+
 <div class="dpad">
+
 <button onclick="move(-1)">⬅</button>
+
 <button onclick="move(1)">➡</button>
+
 </div>
+
+
+
 
 <div id="controls">
 
-<button id="musicBtn">🎵 music</button>
 
-<label>star speed</label>
+<button id="musicBtn">
+🎵 music
+</button>
+
+
+<label>
+volume
+</label>
+
+<input id="volume" type="range" min="0" max="1" step="0.01" value="0.7">
+
+
+<label>
+star speed
+</label>
+
 <input id="speed" type="range" min="0.2" max="3" step="0.1" value="1">
 
-<label>secret code</label>
-<input id="secretInput" type="text" placeholder="enter code...">
+
+<div class="visualizer">
+
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
 
 </div>
 
-<audio id="music" loop>
-<source src="music.mp3" type="audio/mpeg">
-</audio>
+
+<label>
+secret code
+</label>
+
+
+<input id="secretInput" placeholder="enter code...">
+
+
+</div>
+
+
+
+<audio id="music"></audio>
 
 <script>
+<script>
 
-const canvas=document.getElementById("bg");
-const ctx=canvas.getContext("2d");
+/* ==========================
+   MUSIC ENGINE
+========================== */
 
-function resize(){
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-}
-window.addEventListener("resize",resize);
-resize();
 
-let speedControl=1;
-let musicBoost=0;
-let secretMode=false;
-let rainbowMode=false;
-
-document.getElementById("speed").addEventListener("input",(e)=>{
-speedControl=parseFloat(e.target.value);
-});
-
-let stars=Array(120).fill().map(()=>({
-x:Math.random()*innerWidth,
-y:Math.random()*innerHeight,
-r:Math.random()*1.6,
-s:0.4+Math.random()*1.0
-}));
-
-let t=0;
-
-/* MUSIC */
 const music=document.getElementById("music");
 const musicBtn=document.getElementById("musicBtn");
+const volume=document.getElementById("volume");
 
+
+
+const songs=[
+"music.mp3",
+"music2.mp3",
+"music3.mp3"
+];
+
+
+let songIndex=0;
 let musicOn=false;
 
-const audioCtx=new (window.AudioContext||window.webkitAudioContext)();
-const source=audioCtx.createMediaElementSource(music);
-const analyser=audioCtx.createAnalyser();
+
+
+music.src=songs[songIndex];
+
+music.volume=volume.value;
+
+
+
+volume.oninput=()=>{
+
+music.volume=volume.value;
+
+};
+
+
+
+
+
+/* AUDIO ANALYSER */
+
+
+const audioCtx =
+new (window.AudioContext||window.webkitAudioContext)();
+
+
+const source =
+audioCtx.createMediaElementSource(music);
+
+
+const analyser =
+audioCtx.createAnalyser();
+
 
 analyser.fftSize=256;
 
+
 source.connect(analyser);
+
 analyser.connect(audioCtx.destination);
 
-const data=new Uint8Array(analyser.frequencyBinCount);
+
+
+const data=
+new Uint8Array(analyser.frequencyBinCount);
+
+
+
+
 
 musicBtn.onclick=async()=>{
+
+
 await audioCtx.resume();
 
+
 if(!musicOn){
+
+
 music.play();
+
 musicOn=true;
-musicBtn.innerText="⏸ music";
+
+musicBtn.innerHTML="⏸ pause music";
+
+
 }else{
+
+
 music.pause();
+
 musicOn=false;
-musicBtn.innerText="🎵 music";
+
+musicBtn.innerHTML="🎵 music";
+
+
 }
+
+
 };
 
-/* SECRET BOX */
-const secretInput=document.getElementById("secretInput");
 
-secretInput.addEventListener("keydown",(e)=>{
-if(e.key==="Enter"){
-let val=secretInput.value.toLowerCase().trim();
 
-if(val==="safwaan"){
 
-rainbowMode=true;
-secretInput.value="⚡ rainbow mode";
 
-let start=Date.now();
+/* AUTO SONG CHANGE */
 
-const interval=setInterval(()=>{
 
-let hue=(Date.now()/15)%360;
+music.onended=()=>{
 
-/* SAFE rainbow (NO zoom, NO lag) */
-canvas.style.filter=`hue-rotate(${hue}deg)`;
 
-musicBoost=1.2;
+songIndex++;
 
-if(Date.now()-start>60000){
-clearInterval(interval);
-rainbowMode=false;
-musicBoost=0;
-canvas.style.filter="none";
-secretInput.value="";
+
+if(songIndex>=songs.length){
+
+songIndex=0;
+
 }
-},60);
-}
-}
-});
 
-/* DRAW */
-function draw(){
-t+=0.002;
+
+music.src=songs[songIndex];
+
 
 if(musicOn){
-analyser.getByteFrequencyData(data);
-let sum=0;
-for(let i=0;i<data.length;i++) sum+=data[i];
-musicBoost = (sum / data.length) / 70;
+
+music.play();
+
 }
 
-let g=ctx.createRadialGradient(
-canvas.width/2,canvas.height/2,0,
-canvas.width/2,canvas.height/2,canvas.width
-);
 
-g.addColorStop(0,"rgba(60,0,120,0.35)");
-g.addColorStop(0.3,"rgba(0,80,160,0.25)");
-g.addColorStop(0.6,"rgba(0,0,0,0.85)");
-g.addColorStop(1,"black");
-
-ctx.fillStyle=g;
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-/* stars */
-for(let s of stars){
-
-let finalSpeed = speedControl + musicBoost;
-
-if(rainbowMode) finalSpeed *= 1.5;
-
-s.y += s.s * finalSpeed;
-s.x += Math.sin(t+s.y*0.01)*0.2;
-
-if(s.y>canvas.height)s.y=0;
-
-ctx.fillStyle=`rgba(0,255,255,${musicOn ? 0.7 : 0.5})`;
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-ctx.fill();
-}
-
-requestAnimationFrame(draw);
-}
-
-draw();
-
-/* GAME SYSTEM */
-const games=[
-"Poki","CrazyGames","Y8","Miniclip","Armor Games",
-"Slither","Agar","2048","Tetris","Dino",
-"Shell Shockers","Krunker","Venge","1v1.lol","Zombs",
-"Paper.io","Diep.io","Bonk.io","Hole.io","Run 3",
-"Roblox","Coolmath","Stickman Hook","Fireboy","More"
-];
-
-const links={
-"Poki":"https://poki.com",
-"CrazyGames":"https://crazygames.com",
-"Y8":"https://y8.com",
-"Miniclip":"https://miniclip.com",
-"Armor Games":"https://armorgames.com",
-"Slither":"https://slither.io",
-"Agar":"https://agar.io",
-"2048":"https://play2048.co",
-"Tetris":"https://tetris.com",
-"Dino":"https://chromedino.com",
-"Shell Shockers":"https://shellshock.io",
-"Krunker":"https://krunker.io",
-"Venge":"https://venge.io",
-"1v1.lol":"https://buildnow-gg.io/",
-"Zombs":"https://zombsroyale.io",
-"Paper.io":"https://paper-io.com",
-"Diep.io":"https://diep.io",
-"Bonk.io":"https://bonk.io",
-"Hole.io":"https://hole-io.com",
-"Run 3":"https://run3.io",
-"Roblox":"https://roblox.com",
-"Coolmath":"https://coolmathgames.com",
-"Stickman Hook":"https://poki.com/en/g/stickman-hook",
-"Fireboy":"https://poki.com/en/g/fireboy-and-watergirl-forest-temple",
-"More":"https://poki.com"
 };
 
-const track=document.getElementById("track");
 
-games.forEach(g=>{
-let div=document.createElement("div");
-div.className="game";
-div.innerHTML=`<h3>${g}</h3><button onclick="openGame('${g}')">play</button>`;
-track.appendChild(div);
+
+
+
+/* ==========================
+   VISUALIZER
+========================== */
+
+
+const bars=document.querySelectorAll(".bar");
+
+
+let musicPower=0;
+
+
+
+function musicUpdate(){
+
+
+if(musicOn){
+
+
+analyser.getByteFrequencyData(data);
+
+
+let total=0;
+
+
+for(let i=0;i<data.length;i++){
+
+total+=data[i];
+
+}
+
+
+musicPower=
+total/data.length;
+
+
+
+bars.forEach((bar,i)=>{
+
+
+let height=
+10+
+(data[i]*0.25);
+
+
+bar.style.height=
+height+"px";
+
+
 });
 
-const cards=document.querySelectorAll(".game");
-let index=0;
 
-function update(){
-cards.forEach((c,i)=>{
-c.classList.remove("selected");
-if(i===index)c.classList.add("selected");
-});
-
-track.style.transform=`translateX(${-index * 190}px)`;
 }
 
-function move(dir){
-index=(index+dir+cards.length)%cards.length;
-update();
+
+
+requestAnimationFrame(musicUpdate);
+
+
 }
 
-function openGame(name){
-window.open(links[name] || "https://poki.com","_blank");
+
+musicUpdate();
+
+
+
+
+
+/* ==========================
+   BEAT EFFECTS
+========================== */
+
+
+function beatEffects(){
+
+
+if(musicOn && musicPower>80){
+
+
+document.body.style.filter=
+"brightness(1.25)";
+
+
+}else{
+
+
+document.body.style.filter=
+"brightness(1)";
+
+
 }
 
-update();
+
+requestAnimationFrame(beatEffects);
+
+
+}
+
+
+beatEffects();
+
+
+
+
+
+/* ==========================
+   STAR BOOST CONNECTION
+========================== */
+
+
+let musicBoost=0;
+
+
+setInterval(()=>{
+
+
+if(musicOn){
+
+
+musicBoost=
+musicPower/80;
+
+
+}else{
+
+
+musicBoost=0;
+
+
+}
+
+
+},100);
+
+
+
+</script>
 
 </script>
 
 </body>
-  </html>
+</html>

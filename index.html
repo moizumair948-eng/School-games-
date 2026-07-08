@@ -1,1 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>olive class gaming hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:'Orbitron',sans-serif;
+background:black;
+color:white;
+overflow:hidden;
+}
+
+
+canvas{
+position:fixed;
+inset:0;
+z-index:-1;
+}
+
+
+/* HEADER */
+
+header{
+text-align:center;
+padding:20px;
+text-shadow:0 0 20px cyan;
+}
+
+header h1{
+margin:0;
+font-size:22px;
+text-transform:lowercase;
+}
+
+header p{
+font-size:11px;
+opacity:.7;
+}
+
+
+/* GAME AREA */
+
+.menu{
+padding:30px;
+margin-left:40px;
+overflow:hidden;
+}
+
+.track{
+display:flex;
+gap:20px;
+transition:.5s;
+}
+
+.game{
+min-width:170px;
+padding:15px;
+border-radius:12px;
+background:rgba(255,255,255,.05);
+border:2px solid cyan;
+text-align:center;
+opacity:.6;
+transform:scale(.9);
+transition:.3s;
+}
+
+.game.selected{
+opacity:1;
+transform:scale(1.15);
+border-color:#ff00ff;
+box-shadow:0 0 30px cyan;
+}
+
+.game button{
+margin-top:10px;
+padding:10px 15px;
+border-radius:10px;
+background:black;
+color:#00ffff;
+border:2px solid cyan;
+font-family:Orbitron;
+}
+
+
+/* D PAD */
+
+.dpad{
+position:fixed;
+bottom:140px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:20px;
+}
+
+.dpad button{
+width:75px;
+height:75px;
+font-size:25px;
+border-radius:20px;
+background:black;
+color:#00ffff;
+border:2px solid cyan;
+box-shadow:0 0 20px cyan;
+}
+
+
+/* CONTROLS */
+
+#controls{
+position:fixed;
+right:15px;
+bottom:15px;
+display:flex;
+flex-direction:column;
+gap:10px;
+padding:15px;
+background:rgba(0,0,0,.7);
+border-radius:15px;
+border:2px solid cyan;
+box-shadow:0 0 20px cyan;
+}
+
+
+button,
+select,
+input{
+font-family:'Orbitron',sans-serif;
+}
+
+
+#musicBtn{
+padding:12px;
+background:black;
+color:#ff00ff;
+border:2px solid #ff00ff;
+border-radius:10px;
+}
+
+
+select{
+background:black;
+color:#00ffff;
+border:2px solid cyan;
+padding:7px;
+}
+
+
+input{
+accent-color:#00ffff;
+}
+
+
+label{
+color:#00ffff;
+font-size:12px;
+}
+
+
+#secretInput{
+background:black;
+color:#00ffff;
+border:2px solid cyan;
+border-radius:8px;
+padding:7px;
+}
+
+
+.visualizer{
+height:50px;
+display:flex;
+gap:5px;
+align-items:end;
+}
+
+
+.bar{
+width:8px;
+height:10px;
+background:#00ffff;
+box-shadow:0 0 15px cyan;
+}
+
+
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+
+<header>
+
+<h1>olive class gaming hub</h1>
+
+<p>created by moiz</p>
+
+</header>
+
+
+
+<div class="menu">
+
+<div class="track" id="track"></div>
+
+</div>
+
+
+
+
+<div class="dpad">
+
+<button onclick="move(-1)">⬅</button>
+
+<button onclick="move(1)">➡</button>
+
+</div>
+
+
+
+
+
+<div id="controls">
+
+
+<button id="musicBtn">
+▶ play music
+</button>
+
+
+
+<select id="songPicker">
+
+<option value="music.mp3">
+Default
+</option>
+
+<option value="4 RAWS.mp3">
+4 RAWS
+</option>
+
+<option value="Misery.mp3">
+Misery
+</option>
+
+<option value="Why You Bulleh Me Phonk.mp3">
+Why You Bulleh Me Phonk
+</option>
+
+<option value="Meant To Be.mp3">
+Meant To Be
+</option>
+
+</select>
+
+
+
+
+<label>
+volume
+</label>
+
+<input id="volume" type="range" min="0" max="1" step="0.01" value="0.7">
+
+
+
+
+
+<label>
+star speed
+</label>
+
+<input id="speed" type="range" min="0.2" max="3" step="0.1" value="1">
+
+
+
+
+
+<div class="visualizer">
+
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+
+</div>
+
+
+
+
+<label>
+secret code
+</label>
+
+<input id="secretInput" placeholder="enter code...">
+
+
+</div>
+
+
+
+
+
+<audio id="music" loop>
+
+<source src="music.mp3" type="audio/mpeg">
+
+</audio>
+
+
+
+<script>
+  const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+const songPicker = document.getElementById("songPicker");
+const volume = document.getElementById("volume");
+
+let playing = false;
+
+
+/* MUSIC */
+
+music.volume = volume.value;
+
+
+musicBtn.onclick = async ()=>{
+
+if(!playing){
+
+await music.play();
+
+playing = true;
+
+musicBtn.innerHTML = "⏸ pause music";
+
+}else{
+
+music.pause();
+
+playing = false;
+
+musicBtn.innerHTML = "▶ play music";
+
+}
+
+};
+
+
+
+songPicker.onchange = ()=>{
+
+music.src = songPicker.value;
+
+if(playing){
+
+music.play();
+
+}
+
+};
+
+
+
+volume.oninput = ()=>{
+
+music.volume = volume.value;
+
+};
+
+
+
+
+
+/* AUDIO VISUALIZER */
+
+let audioCtx;
+let analyser;
+let source;
+let data;
+
+
+function setupAudio(){
+
+if(audioCtx)return;
+
+audioCtx = new AudioContext();
+
+source = audioCtx.createMediaElementSource(music);
+
+analyser = audioCtx.createAnalyser();
+
+analyser.fftSize = 256;
+
+source.connect(analyser);
+
+analyser.connect(audioCtx.destination);
+
+data = new Uint8Array(analyser.frequencyBinCount);
+
+}
+
+
+musicBtn.addEventListener("click",()=>{
+
+setupAudio();
+
+if(audioCtx){
+
+audioCtx.resume();
+
+}
+
+});
+
+
+
+const bars = document.querySelectorAll(".bar");
+
+
+function animateBars(){
+
+if(analyser){
+
+analyser.getByteFrequencyData(data);
+
+
+bars.forEach((bar,i)=>{
+
+bar.style.height =
+(10 + data[i]/3) + "px";
+
+});
+
+}
+
+
+requestAnimationFrame(animateBars);
+
+}
+
+animateBars();
+
+
+
+
+
+/* STAR BACKGROUND */
+
+const canvas = document.getElementById("bg");
+
+const ctx = canvas.getContext("2d");
+
+
+function resize(){
+
+canvas.width = innerWidth;
+
+canvas.height = innerHeight;
+
+}
+
+resize();
+
+window.addEventListener("resize",resize);
+
+
+
+let stars=[];
+
+
+for(let i=0;i<150;i++){
+
+stars.push({
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height,
+
+r:Math.random()*2,
+
+s:Math.random()+0.3
+
+});
+
+}
+
+
+
+let starSpeed = 1;
+
+
+document.getElementById("speed").oninput=(e)=>{
+
+starSpeed=e.target.value;
+
+};
+
+
+
+function draw(){
+
+ctx.fillStyle="black";
+
+ctx.fillRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+stars.forEach(s=>{
+
+s.y += s.s * starSpeed;
+
+
+if(s.y > canvas.height){
+
+s.y=0;
+
+}
+
+
+ctx.fillStyle="cyan";
+
+ctx.beginPath();
+
+ctx.arc(
+s.x,
+s.y,
+s.r,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+
+});
+
+
+requestAnimationFrame(draw);
+
+}
+
+
+draw();
+
+
+
+
+
+/* SECRET CODE */
+
+document.getElementById("secretInput").addEventListener("keydown",(e)=>{
+
+
+if(e.key==="Enter"){
+
+if(e.target.value.toLowerCase()=="safwaan"){
+
+
+document.body.style.filter="hue-rotate(90deg)";
+
+
+setTimeout(()=>{
+
+document.body.style.filter="none";
+
+},60000);
+
+
+}
+
+}
+
+});
+
+
+
+
+
+/* GAMES */
+
+const games=[
+
+"Poki",
+"CrazyGames",
+"Y8",
+"Miniclip",
+"Roblox",
+"Coolmath",
+"Slither",
+"Agar",
+"2048",
+"Tetris",
+"Krunker",
+"Venge",
+"1v1.lol",
+"Run 3",
+"Shell Shockers"
+
+];
+
+
+
+const links={
+
+"Poki":"https://poki.com",
+
+"CrazyGames":"https://crazygames.com",
+
+"Y8":"https://y8.com",
+
+"Miniclip":"https://miniclip.com",
+
+"Roblox":"https://roblox.com",
+
+"Coolmath":"https://coolmathgames.com",
+
+"Slither":"https://slither.io",
+
+"Agar":"https://agar.io",
+
+"2048":"https://play2048.co",
+
+"Tetris":"https://tetris.com",
+
+"Krunker":"https://krunker.io",
+
+"Venge":"https://venge.io",
+
+"1v1.lol":"https://1v1.lol",
+
+"Run 3":"https://run3.io",
+
+"Shell Shockers":"https://shellshock.io"
+
+};
+
+
+
+const track=document.getElementById("track");
+
+
+games.forEach(game=>{
+
+let card=document.createElement("div");
+
+card.className="game";
+
+
+card.innerHTML=`
+
+<h3>${game}</h3>
+
+<button onclick="openGame('${game}')">
+play
+</button>
+
+`;
+
+
+track.appendChild(card);
+
+
+});
+
+
+
+const cards=document.querySelectorAll(".game");
+
+let index=0;
+
+
+
+function update(){
+
+cards.forEach((card,i)=>{
+
+card.classList.remove("selected");
+
+
+if(i===index){
+
+card.classList.add("selected");
+
+}
+
+});
+
+
+track.style.transform =
+`translateX(${-index*190}px)`;
+
+}
+
+
+
+function move(dir){
+
+index=(index+dir+cards.length)%cards.length;
+
+update();
+
+}
+
+
+
+function openGame(name){
+
+window.open(links[name],"_blank");
+
+}
+
+
+
+update();
+
+</script>
+
+</body>
+
+</html>

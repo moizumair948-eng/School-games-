@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -36,15 +37,13 @@ z-index:-1;
 position:fixed;
 inset:0;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 background:black;
-z-index:9999;
+z-index:999;
 font-size:35px;
 color:#00ffff;
-text-shadow:
-0 0 10px cyan,
-0 0 30px cyan;
+text-shadow:0 0 10px cyan,0 0 30px cyan;
 animation:introFade 3s forwards;
 }
 
@@ -87,276 +86,164 @@ opacity:.7;
 }
 
 
-/* GAME MENU */
+/* GAME AREA */
 
 .menu{
-
 display:flex;
-gap:20px;
 padding:30px;
 margin-left:40px;
 overflow:hidden;
-
 }
 
-
 .track{
-
 display:flex;
 gap:20px;
 transition:.5s;
-
 }
-
 
 .game{
-
 min-width:170px;
-
 padding:15px;
-
 border-radius:12px;
-
-background:
-rgba(255,255,255,.05);
-
-border:2px solid #00ffff;
-
+background:rgba(255,255,255,.05);
+border:2px solid cyan;
 text-align:center;
-
-transform:scale(.9);
-
 opacity:.6;
-
+transform:scale(.9);
 transition:.25s;
-
 }
-
 
 .game.selected{
-
-transform:scale(1.15);
-
 opacity:1;
-
+transform:scale(1.15);
 border-color:#ff00ff;
-
-box-shadow:
-0 0 20px cyan,
-0 0 40px purple;
-
+box-shadow:0 0 25px cyan,0 0 40px magenta;
 }
-
-
 
 .game button{
-
 margin-top:10px;
-
 padding:10px 15px;
-
 border-radius:10px;
-
 border:2px solid cyan;
-
 background:black;
-
 color:#00ffff;
-
-cursor:pointer;
-
 font-family:Orbitron;
-
 box-shadow:0 0 15px cyan;
-
+cursor:pointer;
 }
 
 
-
-.game button:hover{
-
-transform:scale(1.1);
-
-}
-
-
-/* D PAD */
-
+/* DPAD */
 
 .dpad{
-
 position:fixed;
-
 bottom:150px;
-
 left:50%;
-
 transform:translateX(-50%);
-
 display:flex;
-
 gap:25px;
-
 }
-
 
 .dpad button{
-
 width:75px;
-
 height:75px;
-
 font-size:28px;
-
 border-radius:20px;
-
 background:black;
-
 color:#00ffff;
-
 border:2px solid cyan;
-
 box-shadow:0 0 20px cyan;
-
 }
 
 
-
-/* MUSIC PANEL */
-
+/* CONTROL PANEL */
 
 #controls{
-
 position:fixed;
-
-bottom:20px;
-
 right:20px;
-
+bottom:20px;
 display:flex;
-
 flex-direction:column;
-
 gap:10px;
-
-background:
-rgba(0,0,0,.5);
-
 padding:15px;
-
+background:rgba(0,0,0,.5);
 border-radius:15px;
-
 border:1px solid cyan;
-
 backdrop-filter:blur(8px);
-
 box-shadow:0 0 20px cyan;
-
 }
-
 
 
 #musicBtn{
-
 padding:12px;
-
 border-radius:10px;
-
-border:2px solid magenta;
-
 background:black;
-
-color:magenta;
-
-box-shadow:0 0 20px magenta;
-
+color:#ff00ff;
+border:2px solid #ff00ff;
+box-shadow:0 0 20px #ff00ff;
 cursor:pointer;
-
 }
 
-
+#volume,
+#speed{
+width:150px;
+}
 
 #volume{
-
-width:150px;
-
 accent-color:#ff00ff;
-
 }
-
 
 #speed{
-
-width:150px;
-
 accent-color:#00ffff;
-
 }
-
 
 
 label{
-
 font-size:12px;
-
 color:#00ffff;
-
 }
-
-
-
 /* MUSIC VISUALIZER */
 
-
 .visualizer{
-
 display:flex;
-
 gap:5px;
-
 height:50px;
-
 align-items:end;
-
 }
-
-
 
 .bar{
-
 width:8px;
-
 height:10px;
-
 background:#00ffff;
-
 box-shadow:0 0 15px cyan;
-
 }
 
 
-
-/* SECRET */
-
+/* SECRET CODE */
 
 #secretInput{
-
 width:150px;
-
 padding:7px;
-
 background:black;
-
 color:#00ffff;
-
 border:2px solid cyan;
-
 border-radius:8px;
-
 font-family:Orbitron;
-
+outline:none;
 }
 
+
+/* BUTTON EFFECTS */
+
+button{
+font-family:'Orbitron',sans-serif;
+transition:.2s;
+}
+
+button:hover{
+transform:scale(1.05);
+box-shadow:0 0 25px cyan;
+}
 
 
 </style>
@@ -376,12 +263,10 @@ OLIVE CLASS GAMING HUB
 
 
 <header>
-
 <h1>olive class gaming hub</h1>
-
 <p>created by moiz</p>
-
 </header>
+
 
 
 <div class="menu">
@@ -402,7 +287,6 @@ OLIVE CLASS GAMING HUB
 
 
 
-
 <div id="controls">
 
 
@@ -411,18 +295,16 @@ OLIVE CLASS GAMING HUB
 </button>
 
 
-<label>
-volume
-</label>
+<label>volume</label>
 
 <input id="volume" type="range" min="0" max="1" step="0.01" value="0.7">
 
 
-<label>
-star speed
-</label>
+
+<label>star speed</label>
 
 <input id="speed" type="range" min="0.2" max="3" step="0.1" value="1">
+
 
 
 <div class="visualizer">
@@ -438,10 +320,8 @@ star speed
 </div>
 
 
-<label>
-secret code
-</label>
 
+<label>secret code</label>
 
 <input id="secretInput" placeholder="enter code...">
 
@@ -452,12 +332,106 @@ secret code
 
 <audio id="music"></audio>
 
-<script>
+
+
 <script>
 
-/* ==========================
-   MUSIC ENGINE
-========================== */
+
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+
+
+function resize(){
+
+canvas.width=innerWidth;
+canvas.height=innerHeight;
+
+}
+
+window.addEventListener("resize",resize);
+resize();
+
+
+
+/* STAR SYSTEM */
+
+let speedControl=1;
+let musicPower=0;
+
+
+document.getElementById("speed").oninput=(e)=>{
+
+speedControl=parseFloat(e.target.value);
+
+};
+
+
+
+let stars=Array(150).fill().map(()=>({
+
+x:Math.random()*innerWidth,
+y:Math.random()*innerHeight,
+r:Math.random()*1.8,
+s:0.5+Math.random()
+
+}));
+
+
+
+
+function drawStars(){
+
+ctx.fillStyle="black";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+
+
+for(let s of stars){
+
+
+let boost=speedControl+(musicPower/80);
+
+
+s.y+=s.s*boost;
+
+
+if(s.y>canvas.height){
+
+s.y=0;
+
+}
+
+
+ctx.fillStyle=`rgba(0,255,255,.7)`;
+
+ctx.beginPath();
+
+ctx.arc(
+s.x,
+s.y,
+s.r,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+
+}
+
+
+
+requestAnimationFrame(drawStars);
+
+}
+
+drawStars();
+
+
+
+
+
+/* MUSIC SYSTEM */
 
 
 const music=document.getElementById("music");
@@ -465,11 +439,13 @@ const musicBtn=document.getElementById("musicBtn");
 const volume=document.getElementById("volume");
 
 
-
 const songs=[
-"music.mp3",
-"music2.mp3",
-"music3.mp3"
+
+"music/4 RAWS.mp3",
+"music/Why You Bulleh Me Phonk.mp3",
+"music/Misery.mp3",
+"music/Meant To Be.mp3"
+
 ];
 
 
@@ -477,11 +453,7 @@ let songIndex=0;
 let musicOn=false;
 
 
-
 music.src=songs[songIndex];
-
-music.volume=volume.value;
-
 
 
 volume.oninput=()=>{
@@ -491,21 +463,15 @@ music.volume=volume.value;
 };
 
 
+const audioCtx=
+new(window.AudioContext||window.webkitAudioContext)();
 
 
-
-/* AUDIO ANALYSER */
-
-
-const audioCtx =
-new (window.AudioContext||window.webkitAudioContext)();
-
-
-const source =
+const source=
 audioCtx.createMediaElementSource(music);
 
 
-const analyser =
+const analyser=
 audioCtx.createAnalyser();
 
 
@@ -517,10 +483,8 @@ source.connect(analyser);
 analyser.connect(audioCtx.destination);
 
 
-
 const data=
 new Uint8Array(analyser.frequencyBinCount);
-
 
 
 
@@ -559,10 +523,6 @@ musicBtn.innerHTML="🎵 music";
 
 
 
-
-/* AUTO SONG CHANGE */
-
-
 music.onended=()=>{
 
 
@@ -585,26 +545,20 @@ music.play();
 
 }
 
-
 };
 
 
 
 
 
-/* ==========================
-   VISUALIZER
-========================== */
+/* VISUALIZER */
 
 
 const bars=document.querySelectorAll(".bar");
 
 
-let musicPower=0;
 
-
-
-function musicUpdate(){
+function visualizer(){
 
 
 if(musicOn){
@@ -623,113 +577,223 @@ total+=data[i];
 }
 
 
-musicPower=
-total/data.length;
+musicPower=total/data.length;
 
 
 
 bars.forEach((bar,i)=>{
 
-
-let height=
-10+
-(data[i]*0.25);
-
-
 bar.style.height=
-height+"px";
+(10+data[i])+"px";
 
 
 });
 
 
-}
-
-
-
-requestAnimationFrame(musicUpdate);
-
-
-}
-
-
-musicUpdate();
-
-
-
-
-
-/* ==========================
-   BEAT EFFECTS
-========================== */
-
-
-function beatEffects(){
-
-
-if(musicOn && musicPower>80){
-
-
-document.body.style.filter=
-"brightness(1.25)";
-
-
 }else{
 
 
+musicPower=0;
+
+
+}
+
+
+
+requestAnimationFrame(visualizer);
+
+}
+
+
+visualizer();
+
+
+
+
+
+/* SECRET MODE */
+
+
+const secretInput=
+document.getElementById("secretInput");
+
+
+secretInput.addEventListener("keydown",(e)=>{
+
+
+if(e.key==="Enter"){
+
+
+let code=
+secretInput.value.toLowerCase().trim();
+
+
+
+if(code==="safwaan"){
+
+
 document.body.style.filter=
-"brightness(1)";
+"hue-rotate(90deg)";
 
 
-}
+secretInput.value=
+"⚡ rainbow mode";
 
 
-requestAnimationFrame(beatEffects);
+setTimeout(()=>{
 
 
-}
+document.body.style.filter="none";
+
+secretInput.value="";
 
 
-beatEffects();
+},60000);
 
-
-
-
-
-/* ==========================
-   STAR BOOST CONNECTION
-========================== */
-
-
-let musicBoost=0;
-
-
-setInterval(()=>{
-
-
-if(musicOn){
-
-
-musicBoost=
-musicPower/80;
-
-
-}else{
-
-
-musicBoost=0;
 
 
 }
 
 
-},100);
+}
 
+
+});
+
+
+
+
+
+/* GAME SYSTEM */
+
+
+const games=[
+
+"Poki",
+"CrazyGames",
+"Y8",
+"Miniclip",
+"Roblox",
+"Coolmath",
+"Slither",
+"Agar",
+"2048",
+"Tetris",
+"Krunker",
+"Venge",
+"1v1.lol",
+"Run 3"
+
+];
+
+
+
+const links={
+
+"Poki":"https://poki.com",
+"CrazyGames":"https://crazygames.com",
+"Y8":"https://y8.com",
+"Miniclip":"https://miniclip.com",
+"Roblox":"https://roblox.com",
+"Coolmath":"https://coolmathgames.com",
+"Slither":"https://slither.io",
+"Agar":"https://agar.io",
+"2048":"https://play2048.co",
+"Tetris":"https://tetris.com",
+"Krunker":"https://krunker.io",
+"Venge":"https://venge.io",
+"1v1.lol":"https://1v1.lol",
+"Run 3":"https://run3.io"
+
+};
+
+
+
+const track=document.getElementById("track");
+
+
+games.forEach(game=>{
+
+
+let card=document.createElement("div");
+
+
+card.className="game";
+
+
+card.innerHTML=
+
+`<h3>${game}</h3>
+<button onclick="openGame('${game}')">
+play
+</button>`;
+
+
+track.appendChild(card);
+
+
+});
+
+
+
+const cards=
+document.querySelectorAll(".game");
+
+
+let index=0;
+
+
+
+function update(){
+
+cards.forEach((card,i)=>{
+
+card.classList.remove("selected");
+
+
+if(i===index){
+
+card.classList.add("selected");
+
+}
+
+});
+
+
+track.style.transform=
+`translateX(${-index*190}px)`;
+
+}
+
+
+
+function move(dir){
+
+index=(index+dir+cards.length)%cards.length;
+
+update();
+
+}
+
+
+
+function openGame(name){
+
+window.open(
+links[name],
+"_blank"
+);
+
+}
+
+
+
+update();
 
 
 </script>
 
-</script>
 
 </body>
-</html>
+
+</html>   

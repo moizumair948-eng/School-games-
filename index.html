@@ -1,1 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Olive Class Gaming Hub</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:'Orbitron',sans-serif;
+background:black;
+color:white;
+overflow-x:hidden;
+}
+
+
+/* BLUE SPACE BACKGROUND */
+
+.space{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at top,#003cff,transparent 45%);
+z-index:-3;
+}
+
+
+/* MOVING STARS */
+
+.stars{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background-image:
+radial-gradient(white 1px,transparent 1px);
+background-size:40px 40px;
+animation:starsMove 15s linear infinite;
+opacity:0.6;
+z-index:-2;
+}
+
+
+@keyframes starsMove{
+
+from{
+background-position:0 0;
+}
+
+to{
+background-position:0 500px;
+}
+
+}
+
+
+
+/* HEADER */
+
+header{
+text-align:center;
+padding:30px;
+}
+
+
+h1{
+
+font-size:45px;
+color:#00aaff;
+
+text-shadow:
+0 0 10px #00aaff,
+0 0 25px #0066ff;
+
+}
+
+
+
+/* MUSIC */
+
+.music-box{
+
+width:90%;
+max-width:550px;
+margin:20px auto;
+
+padding:20px;
+
+background:rgba(0,0,50,0.7);
+
+border:2px solid #00aaff;
+border-radius:20px;
+
+text-align:center;
+
+box-shadow:
+0 0 20px #0066ff;
+
+}
+
+
+#songName{
+
+color:#00aaff;
+font-size:18px;
+
+}
+
+
+button{
+
+padding:12px 22px;
+
+margin:5px;
+
+border:none;
+border-radius:15px;
+
+background:#0066ff;
+color:white;
+
+font-family:'Orbitron';
+
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+background:#00aaff;
+
+box-shadow:
+0 0 15px #00aaff;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="space"></div>
+<div class="stars"></div>
+
+
+<header>
+
+<h1>🕹️ Olive Class Gaming Hub</h1>
+
+</header>
+
+
+
+<div class="music-box">
+
+<h2>🎵 Music Player</h2>
+
+
+<audio id="music"></audio>
+
+
+<p id="songName"></p>
+
+
+<button onclick="previousSong()">⏮ Back</button>
+
+<button onclick="playMusic()">▶ Play</button>
+
+<button onclick="pauseMusic()">⏸ Pause</button>
+
+<button onclick="nextSong()">⏭ Next</button>
+
+
+</div>
+
+
+
+<script>
+
+
+let songs = [
+
+"4 RAWS.mp3",
+
+"Misery.mp3",
+
+"Meant To Be.mp3",
+
+"Why You Bulleh Meh.mp3",
+
+"Fein.mp3"
+
+];
+
+
+let currentSong = 0;
+
+
+let music = document.getElementById("music");
+
+let songName = document.getElementById("songName");
+
+
+
+function loadSong(){
+
+music.src = songs[currentSong];
+
+songName.innerHTML = "🎵 Playing: " + songs[currentSong];
+
+}
+
+
+
+function playMusic(){
+
+music.play();
+
+}
+
+
+
+function pauseMusic(){
+
+music.pause();
+
+}
+
+
+
+function nextSong(){
+
+currentSong++;
+
+if(currentSong >= songs.length){
+
+currentSong = 0;
+
+}
+
+loadSong();
+
+playMusic();
+
+}
+
+
+
+function previousSong(){
+
+currentSong--;
+
+if(currentSong < 0){
+
+currentSong = songs.length - 1;
+
+}
+
+loadSong();
+
+playMusic();
+
+}
+
+
+
+loadSong();
+
+
+</script>
+<!-- GAMES SECTION -->
+
+<section class="games-section">
+
+<h2>🎮 Games We Play</h2>
+
+
+<div class="games">
+
+
+<div class="game-card">
+
+<h3>🧱 Roblox</h3>
+
+<p>Play Roblox games with friends and explore new worlds.</p>
+
+<button onclick="window.open('https://www.roblox.com','_blank')">
+Play
+</button>
+
+</div>
+
+
+
+<div class="game-card">
+
+<h3>🌌 Fortnite</h3>
+
+<p>Battle, build, and compete with players worldwide.</p>
+
+<button onclick="window.open('https://www.fortnite.com','_blank')">
+Play
+</button>
+
+</div>
+
+
+
+<div class="game-card">
+
+<h3>🧱 Minecraft</h3>
+
+<p>Create, survive, and build anything you imagine.</p>
+
+<button onclick="window.open('https://www.minecraft.net','_blank')">
+Play
+</button>
+
+</div>
+
+
+
+<div class="game-card">
+
+<h3>🧠 Coolmath Games</h3>
+
+<p>Puzzles, challenges, and fun games.</p>
+
+<button onclick="window.open('https://www.coolmathgames.com','_blank')">
+Play
+</button>
+
+</div>
+
+
+
+</div>
+
+</section>
+
+
+
+<style>
+
+.games-section{
+
+text-align:center;
+padding:30px;
+
+}
+
+
+
+.games-section h2{
+
+font-size:35px;
+
+color:#00aaff;
+
+text-shadow:
+0 0 15px #0066ff;
+
+}
+
+
+
+.games{
+
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:20px;
+
+}
+
+
+
+.game-card{
+
+width:260px;
+
+padding:20px;
+
+background:rgba(0,0,50,0.75);
+
+border:2px solid #0066ff;
+
+border-radius:20px;
+
+box-shadow:
+0 0 15px #0066ff;
+
+transition:0.3s;
+
+}
+
+
+
+.game-card:hover{
+
+transform:scale(1.05);
+
+box-shadow:
+0 0 25px #00aaff;
+
+}
+
+
+
+.game-card h3{
+
+color:#00aaff;
+
+}
+
+
+
+.game-card p{
+
+font-size:14px;
+
+}
+
+
+
+</style>
+<!-- PART 3 START -->
+
+<section class="features">
+
+<h2>⭐ Hub Features</h2>
+
+
+<div class="feature-grid">
+
+
+<div class="feature-card">
+
+<h3>🎵 Music Zone</h3>
+
+<p>Listen to your favourite tracks while using the gaming hub.</p>
+
+</div>
+
+
+
+<div class="feature-card">
+
+<h3>🏆 Gaming Area</h3>
+
+<p>Find games, challenges, and fun activities.</p>
+
+</div>
+
+
+
+<div class="feature-card">
+
+<h3>🚀 Space Theme</h3>
+
+<p>A futuristic gaming setup with animated stars.</p>
+
+</div>
+
+
+
+</div>
+
+</section>
+
+
+
+<div class="glow-circle"></div>
+
+
+
+<style>
+
+
+/* FEATURE SECTION */
+
+
+.features{
+
+text-align:center;
+
+padding:40px;
+
+}
+
+
+
+.features h2{
+
+font-size:35px;
+
+color:#00aaff;
+
+text-shadow:
+0 0 15px #00aaff;
+
+}
+
+
+
+.feature-grid{
+
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:20px;
+
+}
+
+
+
+.feature-card{
+
+width:250px;
+
+padding:20px;
+
+background:rgba(0,20,70,0.7);
+
+border:2px solid #00aaff;
+
+border-radius:20px;
+
+transition:0.4s;
+
+}
+
+
+
+.feature-card:hover{
+
+transform:translateY(-10px) scale(1.05);
+
+box-shadow:
+0 0 30px #00aaff;
+
+}
+
+
+
+.feature-card h3{
+
+color:#00ccff;
+
+}
+
+
+
+/* MOVING GLOW */
+
+
+.glow-circle{
+
+position:fixed;
+
+width:250px;
+
+height:250px;
+
+border-radius:50%;
+
+background:rgba(0,100,255,0.15);
+
+filter:blur(40px);
+
+top:40%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+animation:pulse 4s infinite;
+
+pointer-events:none;
+
+}
+
+
+
+@keyframes pulse{
+
+0%{
+
+opacity:0.3;
+
+transform:translate(-50%,-50%) scale(1);
+
+}
+
+
+50%{
+
+opacity:0.8;
+
+transform:translate(-50%,-50%) scale(1.3);
+
+}
+
+
+100%{
+
+opacity:0.3;
+
+transform:translate(-50%,-50%) scale(1);
+
+}
+
+}
+
+
+</style>
+<!-- PART 4 START -->
+
+<section class="extra">
+
+<h2>🔥 More Coming Soon</h2>
+
+<p>
+More games, music, and updates will be added to the Olive Class Gaming Hub.
+</p>
+
+
+<div class="social-box">
+
+<h3>🌐 Gaming Hub</h3>
+
+<p>Enjoy the futuristic gaming experience 🚀</p>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+<p>
+© Olive Class Gaming Hub 🎮
+</p>
+
+</footer>
+
+
+
+<style>
+
+
+.extra{
+
+text-align:center;
+
+padding:40px;
+
+}
+
+
+
+.extra h2{
+
+font-size:35px;
+
+color:#00aaff;
+
+text-shadow:
+0 0 15px #00aaff;
+
+}
+
+
+
+.extra p{
+
+font-size:16px;
+
+}
+
+
+
+.social-box{
+
+margin:20px auto;
+
+width:80%;
+
+max-width:400px;
+
+padding:20px;
+
+background:rgba(0,0,50,0.7);
+
+border:2px solid #0066ff;
+
+border-radius:20px;
+
+box-shadow:
+0 0 20px #0066ff;
+
+}
+
+
+
+footer{
+
+text-align:center;
+
+padding:20px;
+
+color:#00aaff;
+
+font-size:14px;
+
+}
+
+
+
+</style>
+
+
+<!-- PART 4 END -->
+
+
+</body>
+
+</html>
+
+
+
+
 

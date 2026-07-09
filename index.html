@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Olive Class Gaming Hub</title>
+<title>olive class gaming hub</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
 
 <style>
 
@@ -15,55 +17,30 @@
 box-sizing:border-box;
 }
 
+
 body{
+
 margin:0;
+
 font-family:'Orbitron',sans-serif;
+
 background:black;
+
 color:white;
-overflow-x:hidden;
+
+overflow:hidden;
+
 }
 
 
-/* BLUE SPACE BACKGROUND */
 
-.space{
+canvas{
+
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:
-radial-gradient(circle at top,#003cff,transparent 45%);
-z-index:-3;
-}
 
+inset:0;
 
-/* MOVING STARS */
-
-.stars{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background-image:
-radial-gradient(white 1px,transparent 1px);
-background-size:40px 40px;
-animation:starsMove 15s linear infinite;
-opacity:0.6;
-z-index:-2;
-}
-
-
-@keyframes starsMove{
-
-from{
-background-position:0 0;
-}
-
-to{
-background-position:0 500px;
-}
+z-index:-1;
 
 }
 
@@ -72,80 +49,295 @@ background-position:0 500px;
 /* HEADER */
 
 header{
+
 text-align:center;
-padding:30px;
-}
-
-
-h1{
-
-font-size:45px;
-color:#00aaff;
-
-text-shadow:
-0 0 10px #00aaff,
-0 0 25px #0066ff;
-
-}
-
-
-
-/* MUSIC */
-
-.music-box{
-
-width:90%;
-max-width:550px;
-margin:20px auto;
 
 padding:20px;
 
-background:rgba(0,0,50,0.7);
+text-shadow:0 0 20px cyan;
 
-border:2px solid #00aaff;
-border-radius:20px;
+}
+
+
+header h1{
+
+margin:0;
+
+font-size:22px;
+
+text-transform:lowercase;
+
+}
+
+
+header p{
+
+font-size:11px;
+
+opacity:.7;
+
+}
+
+
+
+/* GAME AREA */
+
+
+.menu{
+
+padding:30px;
+
+margin-left:40px;
+
+overflow:hidden;
+
+}
+
+
+
+.track{
+
+display:flex;
+
+gap:20px;
+
+transition:.5s;
+
+}
+
+
+
+.game{
+
+min-width:170px;
+
+padding:15px;
+
+border-radius:12px;
+
+background:rgba(255,255,255,.05);
+
+border:2px solid cyan;
 
 text-align:center;
 
-box-shadow:
-0 0 20px #0066ff;
+opacity:.6;
+
+transform:scale(.9);
+
+transition:.3s;
 
 }
 
 
-#songName{
 
-color:#00aaff;
-font-size:18px;
+.game.selected{
+
+opacity:1;
+
+transform:scale(1.15);
+
+border-color:#ff00ff;
+
+box-shadow:0 0 30px cyan;
 
 }
 
 
-button{
 
-padding:12px 22px;
+.game button{
 
-margin:5px;
+margin-top:10px;
 
-border:none;
+padding:10px 15px;
+
+border-radius:10px;
+
+background:black;
+
+color:#00ffff;
+
+border:2px solid cyan;
+
+font-family:Orbitron;
+
+}
+
+
+
+/* D PAD */
+
+
+.dpad{
+
+position:fixed;
+
+bottom:140px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+display:flex;
+
+gap:20px;
+
+}
+
+
+.dpad button{
+
+width:75px;
+
+height:75px;
+
+font-size:25px;
+
+border-radius:20px;
+
+background:black;
+
+color:#00ffff;
+
+border:2px solid cyan;
+
+box-shadow:0 0 20px cyan;
+
+}
+
+
+
+/* CONTROLS */
+
+
+#controls{
+
+position:fixed;
+
+right:15px;
+
+bottom:15px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+padding:15px;
+
+background:rgba(0,0,0,.7);
+
 border-radius:15px;
 
-background:#0066ff;
-color:white;
+border:2px solid cyan;
 
-font-family:'Orbitron';
-
-cursor:pointer;
+box-shadow:0 0 20px cyan;
 
 }
 
 
-button:hover{
 
-background:#00aaff;
+button,
+select,
+input{
 
-box-shadow:
-0 0 15px #00aaff;
+font-family:'Orbitron',sans-serif;
+
+}
+
+
+
+#musicBtn{
+
+padding:12px;
+
+background:black;
+
+color:#ff00ff;
+
+border:2px solid #ff00ff;
+
+border-radius:10px;
+
+}
+
+
+
+select{
+
+background:black;
+
+color:#00ffff;
+
+border:2px solid cyan;
+
+padding:7px;
+
+}
+
+
+
+input{
+
+accent-color:#00ffff;
+
+}
+
+
+
+label{
+
+color:#00ffff;
+
+font-size:12px;
+
+}
+
+
+
+#secretInput{
+
+background:black;
+
+color:#00ffff;
+
+border:2px solid cyan;
+
+border-radius:8px;
+
+padding:7px;
+
+}
+
+
+
+/* VISUALIZER */
+
+
+.visualizer{
+
+height:50px;
+
+display:flex;
+
+gap:5px;
+
+align-items:end;
+
+}
+
+
+
+.bar{
+
+width:8px;
+
+height:10px;
+
+background:#00ffff;
+
+box-shadow:0 0 15px cyan;
 
 }
 
@@ -158,602 +350,778 @@ box-shadow:
 <body>
 
 
-<div class="space"></div>
-<div class="stars"></div>
+<canvas id="bg"></canvas>
+
 
 
 <header>
 
-<h1>🕹️ Olive Class Gaming Hub</h1>
+<h1>olive class gaming hub</h1>
+
+<p>created by moiz</p>
 
 </header>
 
 
 
-<div class="music-box">
+<div class="menu">
 
-<h2>🎵 Music Player</h2>
+<div class="track" id="track"></div>
+
+</div>
+<div class="dpad">
+
+<button onclick="move(-1)">⬅</button>
+
+<button onclick="move(1)">➡</button>
+
+</div>
 
 
-<audio id="music"></audio>
 
 
-<p id="songName"></p>
+<div id="controls">
 
 
-<button onclick="previousSong()">⏮ Back</button>
+<button id="musicBtn">
+▶ play music
+</button>
 
-<button onclick="playMusic()">▶ Play</button>
 
-<button onclick="pauseMusic()">⏸ Pause</button>
 
-<button onclick="nextSong()">⏭ Next</button>
+<select id="songPicker">
+
+<option value="4 RAWS.mp3">
+4 RAWS
+</option>
+
+
+<option value="Misery.mp3">
+Misery
+</option>
+
+
+<option value="Meant To Be.mp3">
+Meant To Be
+</option>
+
+
+<option value="Why You Bulleh Meh.mp3">
+Why You Bulleh Meh
+</option>
+
+
+<option value="Fein.mp3">
+Fein
+</option>
+
+
+</select>
+
+
+
+
+<label>
+volume
+</label>
+
+
+<input id="volume" type="range" min="0" max="1" step="0.01" value="0.7">
+
+
+
+
+
+<label>
+star speed
+</label>
+
+
+<input id="speed" type="range" min="0.2" max="3" step="0.1" value="1">
+
+
+
+
+
+<div class="visualizer">
+
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
+
+<div class="bar"></div>
 
 
 </div>
 
 
 
-<script>
 
 
-let songs = [
-
-"4 RAWS.mp3",
-
-"Misery.mp3",
-
-"Meant To Be.mp3",
-
-"Why You Bulleh Meh.mp3",
-
-"Fein.mp3"
-
-];
+<label>
+secret code
+</label>
 
 
-let currentSong = 0;
-
-
-let music = document.getElementById("music");
-
-let songName = document.getElementById("songName");
+<input id="secretInput" placeholder="enter code...">
 
 
 
-function loadSong(){
+</div>
 
-music.src = songs[currentSong];
 
-songName.innerHTML = "🎵 Playing: " + songs[currentSong];
+
+
+
+
+<audio id="music" loop>
+
+
+<source src="4 RAWS.mp3" type="audio/mpeg">
+
+
+</audio>
+
+
+
+
+
+<style>
+
+
+/* NEON BUTTONS */
+
+
+button{
+
+font-family:'Orbitron',sans-serif;
+
+padding:12px 18px;
+
+background:black;
+
+color:#00ffff;
+
+border:2px solid cyan;
+
+border-radius:12px;
+
+cursor:pointer;
+
+box-shadow:
+0 0 10px cyan,
+0 0 25px cyan inset;
+
+transition:.3s;
 
 }
 
 
 
-function playMusic(){
+button:hover{
+
+color:white;
+
+border-color:#ff00ff;
+
+box-shadow:
+0 0 20px #ff00ff,
+0 0 40px cyan;
+
+transform:scale(1.08);
+
+}
+
+
+
+#musicBtn{
+
+color:#ff00ff;
+
+border-color:#ff00ff;
+
+box-shadow:
+0 0 15px #ff00ff;
+
+}
+
+
+
+#musicBtn:hover{
+
+background:#ff00ff;
+
+color:black;
+
+box-shadow:
+0 0 30px #ff00ff;
+
+}
+
+
+
+</style>
+
+
+
+
+<script>
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+const songPicker = document.getElementById("songPicker");
+const volume = document.getElementById("volume");
+
+
+let playing = false;
+
+
+
+/* MUSIC */
+
+
+music.volume = volume.value;
+
+
+
+musicBtn.onclick = async ()=>{
+
+
+if(!playing){
+
+
+await music.play();
+
+
+playing = true;
+
+
+musicBtn.innerHTML="⏸ pause music";
+
+
+}else{
+
+
+music.pause();
+
+
+playing=false;
+
+
+musicBtn.innerHTML="▶ play music";
+
+
+}
+
+
+};
+
+
+
+
+
+songPicker.onchange=()=>{
+
+
+music.src=songPicker.value;
+
+
+if(playing){
 
 music.play();
 
 }
 
 
+};
 
-function pauseMusic(){
 
-music.pause();
+
+
+
+volume.oninput=()=>{
+
+
+music.volume=volume.value;
+
+
+};
+
+
+
+
+
+
+/* AUDIO VISUALIZER */
+
+
+let audioCtx;
+
+let analyser;
+
+let source;
+
+let data;
+
+
+
+function setupAudio(){
+
+
+if(audioCtx)return;
+
+
+audioCtx=new AudioContext();
+
+
+source=audioCtx.createMediaElementSource(music);
+
+
+analyser=audioCtx.createAnalyser();
+
+
+analyser.fftSize=256;
+
+
+source.connect(analyser);
+
+
+analyser.connect(audioCtx.destination);
+
+
+data=new Uint8Array(analyser.frequencyBinCount);
+
 
 }
 
 
 
-function nextSong(){
 
-currentSong++;
+musicBtn.addEventListener("click",()=>{
 
-if(currentSong >= songs.length){
 
-currentSong = 0;
+setupAudio();
 
-}
 
-loadSong();
+if(audioCtx){
 
-playMusic();
+audioCtx.resume();
 
 }
 
 
+});
 
-function previousSong(){
 
-currentSong--;
 
-if(currentSong < 0){
 
-currentSong = songs.length - 1;
+
+
+const bars=document.querySelectorAll(".bar");
+
+
+
+function animateBars(){
+
+
+if(analyser){
+
+
+analyser.getByteFrequencyData(data);
+
+
+
+bars.forEach((bar,i)=>{
+
+
+bar.style.height=(10+data[i]/3)+"px";
+
+
+});
+
 
 }
 
-loadSong();
 
-playMusic();
+
+requestAnimationFrame(animateBars);
+
+
+}
+
+
+animateBars();
+
+
+
+
+
+
+
+/* STAR BACKGROUND */
+
+
+const canvas=document.getElementById("bg");
+
+const ctx=canvas.getContext("2d");
+
+
+
+function resize(){
+
+
+canvas.width=innerWidth;
+
+canvas.height=innerHeight;
+
 
 }
 
 
 
-loadSong();
+resize();
+
+
+window.addEventListener("resize",resize);
+
+
+
+
+let stars=[];
+
+
+
+for(let i=0;i<150;i++){
+
+
+stars.push({
+
+x:Math.random()*canvas.width,
+
+y:Math.random()*canvas.height,
+
+r:Math.random()*2,
+
+s:Math.random()+0.3
+
+});
+
+
+}
+
+
+
+
+
+let starSpeed=1;
+
+
+
+document.getElementById("speed").oninput=(e)=>{
+
+
+starSpeed=e.target.value;
+
+
+};
+
+
+
+
+function draw(){
+
+
+ctx.fillStyle="black";
+
+
+ctx.fillRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+
+
+stars.forEach(s=>{
+
+
+s.y+=s.s*starSpeed;
+
+
+
+if(s.y>canvas.height){
+
+
+s.y=0;
+
+
+}
+
+
+
+
+
+ctx.fillStyle="cyan";
+
+
+ctx.beginPath();
+
+
+ctx.arc(
+s.x,
+s.y,
+s.r,
+0,
+Math.PI*2
+);
+
+
+ctx.fill();
+
+
+
+});
+
+
+
+requestAnimationFrame(draw);
+
+
+}
+
+
+
+draw();
+
+
+
+
+
+
+/* SECRET CODE */
+
+
+document.getElementById("secretInput").addEventListener("keydown",(e)=>{
+
+
+if(e.key==="Enter"){
+
+
+if(e.target.value.toLowerCase()=="safwaan"){
+
+
+document.body.style.filter="hue-rotate(90deg)";
+
+
+
+setTimeout(()=>{
+
+
+document.body.style.filter="none";
+
+
+},60000);
+
+
+
+}
+
+
+}
+
+
+});
+/* GAMES */
+
+
+const games=[
+
+"Poki",
+"CrazyGames",
+"Y8",
+"Miniclip",
+"Roblox",
+"Coolmath",
+"Slither",
+"Agar",
+"2048",
+"Tetris",
+"Krunker",
+"Venge",
+"1v1.lol",
+"Run 3",
+"Shell Shockers"
+
+];
+
+
+
+
+
+const links={
+
+
+"Poki":"https://poki.com",
+
+"CrazyGames":"https://crazygames.com",
+
+"Y8":"https://y8.com",
+
+"Miniclip":"https://miniclip.com",
+
+"Roblox":"https://roblox.com",
+
+"Coolmath":"https://coolmathgames.com",
+
+"Slither":"https://slither.io",
+
+"Agar":"https://agar.io",
+
+"2048":"https://play2048.co",
+
+"Tetris":"https://tetris.com",
+
+"Krunker":"https://krunker.io",
+
+"Venge":"https://venge.io",
+
+"1v1.lol":"https://1v1.lol",
+
+"Run 3":"https://run3.io",
+
+"Shell Shockers":"https://shellshock.io"
+
+
+};
+
+
+
+
+
+const track=document.getElementById("track");
+
+
+
+
+
+games.forEach(game=>{
+
+
+let card=document.createElement("div");
+
+
+card.className="game";
+
+
+
+card.innerHTML=`
+
+<h3>${game}</h3>
+
+<button onclick="openGame('${game}')">
+play
+</button>
+
+`;
+
+
+
+track.appendChild(card);
+
+
+});
+
+
+
+
+
+
+const cards=document.querySelectorAll(".game");
+
+
+let index=0;
+
+
+
+
+
+function update(){
+
+
+cards.forEach((card,i)=>{
+
+
+card.classList.remove("selected");
+
+
+
+if(i===index){
+
+
+card.classList.add("selected");
+
+
+}
+
+
+});
+
+
+
+track.style.transform=
+
+`translateX(${-index*190}px)`;
+
+
+}
+
+
+
+
+
+
+function move(dir){
+
+
+index=(index+dir+cards.length)%cards.length;
+
+
+update();
+
+
+}
+
+
+
+
+
+
+function openGame(name){
+
+
+window.open(links[name],"_blank");
+
+
+}
+
+
+
+update();
+
 
 
 </script>
-<!-- GAMES SECTION -->
-
-<section class="games-section">
-
-<h2>🎮 Games We Play</h2>
-
-
-<div class="games">
-
-
-<div class="game-card">
-
-<h3>🧱 Roblox</h3>
-
-<p>Play Roblox games with friends and explore new worlds.</p>
-
-<button onclick="window.open('https://www.roblox.com','_blank')">
-Play
-</button>
-
-</div>
-
-
-
-<div class="game-card">
-
-<h3>🌌 Fortnite</h3>
-
-<p>Battle, build, and compete with players worldwide.</p>
-
-<button onclick="window.open('https://www.fortnite.com','_blank')">
-Play
-</button>
-
-</div>
-
-
-
-<div class="game-card">
-
-<h3>🧱 Minecraft</h3>
-
-<p>Create, survive, and build anything you imagine.</p>
-
-<button onclick="window.open('https://www.minecraft.net','_blank')">
-Play
-</button>
-
-</div>
-
-
-
-<div class="game-card">
-
-<h3>🧠 Coolmath Games</h3>
-
-<p>Puzzles, challenges, and fun games.</p>
-
-<button onclick="window.open('https://www.coolmathgames.com','_blank')">
-Play
-</button>
-
-</div>
-
-
-
-</div>
-
-</section>
-
-
-
-<style>
-
-.games-section{
-
-text-align:center;
-padding:30px;
-
-}
-
-
-
-.games-section h2{
-
-font-size:35px;
-
-color:#00aaff;
-
-text-shadow:
-0 0 15px #0066ff;
-
-}
-
-
-
-.games{
-
-display:flex;
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-gap:20px;
-
-}
-
-
-
-.game-card{
-
-width:260px;
-
-padding:20px;
-
-background:rgba(0,0,50,0.75);
-
-border:2px solid #0066ff;
-
-border-radius:20px;
-
-box-shadow:
-0 0 15px #0066ff;
-
-transition:0.3s;
-
-}
-
-
-
-.game-card:hover{
-
-transform:scale(1.05);
-
-box-shadow:
-0 0 25px #00aaff;
-
-}
-
-
-
-.game-card h3{
-
-color:#00aaff;
-
-}
-
-
-
-.game-card p{
-
-font-size:14px;
-
-}
-
-
-
-</style>
-<!-- PART 3 START -->
-
-<section class="features">
-
-<h2>⭐ Hub Features</h2>
-
-
-<div class="feature-grid">
-
-
-<div class="feature-card">
-
-<h3>🎵 Music Zone</h3>
-
-<p>Listen to your favourite tracks while using the gaming hub.</p>
-
-</div>
-
-
-
-<div class="feature-card">
-
-<h3>🏆 Gaming Area</h3>
-
-<p>Find games, challenges, and fun activities.</p>
-
-</div>
-
-
-
-<div class="feature-card">
-
-<h3>🚀 Space Theme</h3>
-
-<p>A futuristic gaming setup with animated stars.</p>
-
-</div>
-
-
-
-</div>
-
-</section>
-
-
-
-<div class="glow-circle"></div>
-
-
-
-<style>
-
-
-/* FEATURE SECTION */
-
-
-.features{
-
-text-align:center;
-
-padding:40px;
-
-}
-
-
-
-.features h2{
-
-font-size:35px;
-
-color:#00aaff;
-
-text-shadow:
-0 0 15px #00aaff;
-
-}
-
-
-
-.feature-grid{
-
-display:flex;
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-gap:20px;
-
-}
-
-
-
-.feature-card{
-
-width:250px;
-
-padding:20px;
-
-background:rgba(0,20,70,0.7);
-
-border:2px solid #00aaff;
-
-border-radius:20px;
-
-transition:0.4s;
-
-}
-
-
-
-.feature-card:hover{
-
-transform:translateY(-10px) scale(1.05);
-
-box-shadow:
-0 0 30px #00aaff;
-
-}
-
-
-
-.feature-card h3{
-
-color:#00ccff;
-
-}
-
-
-
-/* MOVING GLOW */
-
-
-.glow-circle{
-
-position:fixed;
-
-width:250px;
-
-height:250px;
-
-border-radius:50%;
-
-background:rgba(0,100,255,0.15);
-
-filter:blur(40px);
-
-top:40%;
-
-left:50%;
-
-transform:translate(-50%,-50%);
-
-animation:pulse 4s infinite;
-
-pointer-events:none;
-
-}
-
-
-
-@keyframes pulse{
-
-0%{
-
-opacity:0.3;
-
-transform:translate(-50%,-50%) scale(1);
-
-}
-
-
-50%{
-
-opacity:0.8;
-
-transform:translate(-50%,-50%) scale(1.3);
-
-}
-
-
-100%{
-
-opacity:0.3;
-
-transform:translate(-50%,-50%) scale(1);
-
-}
-
-}
-
-
-</style>
-<!-- PART 4 START -->
-
-<section class="extra">
-
-<h2>🔥 More Coming Soon</h2>
-
-<p>
-More games, music, and updates will be added to the Olive Class Gaming Hub.
-</p>
-
-
-<div class="social-box">
-
-<h3>🌐 Gaming Hub</h3>
-
-<p>Enjoy the futuristic gaming experience 🚀</p>
-
-</div>
-
-</section>
-
-
-
-<footer>
-
-<p>
-© Olive Class Gaming Hub 🎮
-</p>
-
-</footer>
-
-
-
-<style>
-
-
-.extra{
-
-text-align:center;
-
-padding:40px;
-
-}
-
-
-
-.extra h2{
-
-font-size:35px;
-
-color:#00aaff;
-
-text-shadow:
-0 0 15px #00aaff;
-
-}
-
-
-
-.extra p{
-
-font-size:16px;
-
-}
-
-
-
-.social-box{
-
-margin:20px auto;
-
-width:80%;
-
-max-width:400px;
-
-padding:20px;
-
-background:rgba(0,0,50,0.7);
-
-border:2px solid #0066ff;
-
-border-radius:20px;
-
-box-shadow:
-0 0 20px #0066ff;
-
-}
-
-
-
-footer{
-
-text-align:center;
-
-padding:20px;
-
-color:#00aaff;
-
-font-size:14px;
-
-}
-
-
-
-</style>
-
-
-<!-- PART 4 END -->
 
 
 </body>
 
+
 </html>
-
-
-
-
-
